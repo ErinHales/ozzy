@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css?family=Galada');
+
+.welcome {
+    display: flex;
+    flex-direction: column;
+    /* align-content: space-around; */
+    align-content: space-around;
+    align-items: center;
+    background-color: #9B59B6;
+    width: 100vw;
+    height: 100vh;
+}
+
+.welcome img {
+    margin-top: 20px;
+    width: 350px;
+}
+
+.welcome h1 {
+    font-family: "Galada", cursive;
+    font-size: 96px;
+    color: white;
+    margin: 0px;
+    font-weight: lighter;
+    text-shadow: 5px 5px 5px rgba(0,0,0,0.25);
+}
