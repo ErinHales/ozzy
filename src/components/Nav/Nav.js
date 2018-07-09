@@ -39,9 +39,18 @@ export default class Nav extends Component {
                     </div>
                     <div className={this.state.menu ? "menuOn" : "menuOff"}>
                         <div className="menuLinks">
-                            <Link className="link" to="/forum">Forum</Link><br/>
-                            <Link className="link" to="/new">Create Post</Link><br/>
-                            <Link className="link" to="/">Logout</Link><br/>
+                            <div className="menuItem">
+                                <img src="http://i68.tinypic.com/289a80g.jpg" alt="Forum"/>
+                                <Link className="link" to="/forum">Forum</Link><br/>
+                            </div>
+                            <div className="menuItem">
+                                <img src="http://i68.tinypic.com/3130vwh.jpg" alt=""/>
+                                <Link className="link" to="/new">Create Post</Link><br/>
+                            </div>
+                            <div className="menuItem">
+                                <img src="http://i63.tinypic.com/35jcg04.jpg" alt=""/>
+                                <Link className="link" to="/">Logout</Link><br/>
+                            </div>
                         </div>
                     </div>
                 </div>

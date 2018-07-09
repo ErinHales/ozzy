@@ -5,7 +5,9 @@ const session = require('express-session');
 const axios = require('axios');
 require('dotenv').config();
 
+// controllers
 const authControllers = require('./controllers/auth-controllers');
+const postControllers = require('./controllers/post-controllers');
 
 const app = express();
 
@@ -65,12 +67,17 @@ app.get('/auth/callback', (req, res) => {
     })
     
   
-  
+// auth controllers
 app.post('/api/logout', authControllers.logout);
   
 app.get('/api/user-data', authControllers.userData);
   
 app.get('/api/secure-data', authControllers.checkLoggedIn, authControllers.secureUserData);
+
+
+
+// post controllers
+app.get('/api/posts', postControllers.getPosts);
 
 
 

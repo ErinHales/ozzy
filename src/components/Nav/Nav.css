@@ -20,7 +20,8 @@
 .nav img {
     display: inline-block;
     float: right;
-    margin: 17px;
+    margin: 10px;
+    width: 60px;
 }
 
 .menuOff {
@@ -55,4 +56,14 @@
     color: white;
     margin: 8px;
     font-size: 24px;
+}
+
+.menuLinks img {
+    height: 20px;
+    width: 20px;
+    margin-left: 8px;
+}
+
+.menuItem {
+    margin: 17px 17px 17px 10px;
 }
