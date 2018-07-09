@@ -8,10 +8,11 @@ import './App.css';
 
 class App extends Component {
   render() {
+    console.log(window.location);
     return (
       <HashRouter>
         <div>
-          <Nav />
+        <Nav />
           <Switch>
             <Route exact path="/" component={Welcome} />
             <Route path="/forum" component={Forum} />

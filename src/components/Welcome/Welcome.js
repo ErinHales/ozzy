@@ -16,7 +16,7 @@ export default class Welcome extends Component {
             <div className="welcome">
                 <img src="http://i67.tinypic.com/33lm8g4.jpg" alt=""/>
                 <h1>Ozzy</h1>
-                <button onClick={() => this.login()}><Button text="Get Started"/></button>
+                <div onClick={() => this.login()}><Button text="Get Started"/></div>
             </div>
         )
     }

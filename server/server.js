@@ -51,6 +51,7 @@ app.get('/auth/callback', (req, res) => {
     function storeUserInfoInDataBase(response){
       
       req.session.user = response.data;
+      console.log(response.data);
       res.redirect('http://localhost:3000/#/forum')
       //http://localhost:3000 <= this is more explicit, you can do either way
       

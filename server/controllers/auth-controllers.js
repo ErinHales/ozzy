@@ -14,6 +14,9 @@ module.exports = {
         }
     },
     secureUserData: (req, res) => {
-        res.json({ someSecureData: 123 });
+        res.json({ 
+            name: req.session.user.name, 
+            picture: req.session.user.picture
+        });
     }
 }
