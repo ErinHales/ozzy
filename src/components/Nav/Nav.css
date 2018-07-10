@@ -18,11 +18,10 @@
 }
 
 .nav img {
-    display: inline-block;
     float: right;
     margin: 10px;
     margin-right: 20px;
-    width: 60px;
+    height: 60px;
 }
 
 .menuOff {
@@ -50,6 +49,7 @@
     display: flex;
     flex-direction: column;
     align-content: space-around;
+    background-color: #9B59B6;
 }
 
 .link {
@@ -67,4 +67,5 @@
 
 .menuItem {
     margin: 17px 17px 17px 10px;
+    background-color: #9B59B6;
 }

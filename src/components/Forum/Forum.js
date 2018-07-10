@@ -21,7 +21,6 @@ export default class Forum extends Component {
     }
 
     render() {
-        // console.log(this.state.posts);
         let postsArr = [];
         this.state.posts.forEach((post,i) => {
             postsArr.push(<Post key={i} data={post} />)
