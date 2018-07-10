@@ -4,6 +4,4 @@ CREATE TABLE Posts (
  date VARCHAR(40), 
  post VARCHAR(2000), 
  status VARCHAR(80),
- liked BOOLEAN,
- loved BOOLEAN
 );

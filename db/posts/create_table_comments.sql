@@ -1,7 +1,6 @@
-CREATE TABLE LikePost (
+CREATE TABLE Comments(
 id SERIAL PRIMARY KEY,
 postid INTEGER,
-liked BOOLEAN,
-loved BOOLEAN,
+text VARCHAR(500),
 userid INTEGER
 );

@@ -73,3 +73,48 @@
     height: 15px;
     width: 17px;
 }
+
+.comment {
+    font-size: 14px;
+    margin: 0px;
+    padding: 0px;
+}
+
+.post input {
+    margin-left: 5px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    padding: 3px;
+    width: 75%;
+    display: inline-block;
+}
+
+.post button {
+    display: inline-block;
+    width: 15%;
+    font-size: 14px;
+    padding: 5px;
+}
+
+.commentContainer {
+    background-color: white;
+}
+
+.userComment {
+    display: flex;
+    background-color: white;
+}
+
+.userComment img {
+    height: 25px;
+    width: auto;
+}
+
+.commentName {
+    background-color: white;
+}
+
+.commentName h3 {
+    font-size: 14px;
+    font-family: 'roboto', sans-serif;
+}

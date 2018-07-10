@@ -62,14 +62,7 @@ app.get('/auth/callback', (req, res) => {
             return res.redirect('http://localhost:3000/#/forum');
           })
         }
-      })
-      // if(response.data.sub )
-      
-      // req.session.user = response.data;
-      // console.log(response.data);
-      // res.redirect('http://localhost:3000/#/forum')
-      //http://localhost:3000 <= this is more explicit, you can do either way
-      
+      })   
     }
      
     //Final Code, Uncomment after completeing steps 1-4 above
@@ -92,6 +85,9 @@ app.get('/api/posts', postControllers.getPosts);
 app.get('/api/liked/:postid', postControllers.getLikedPosts);
 app.put('/api/like/:postid', postControllers.likePost);
 app.put('/api/love/:postid', postControllers.lovePost);
+app.post('/api/newlike/:postid', postControllers.likeNewPost);
+app.get('/api/comments/:postid', postControllers.getComments);
+app.post('/api/comment/:postid', postControllers.leaveComment);
 
 
 

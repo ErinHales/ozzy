@@ -1,4 +1,4 @@
 UPDATE LikePost
-SET liked = $2
-WHERE postid = $1
+SET liked = $3
+WHERE postid = $1 AND userid = $2
 RETURNING *;
