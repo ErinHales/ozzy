@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css?family=Fresca|Roboto|Muli');
+
+.post {
+    background-color: white;
+    margin-top: 8px;
+    margin-bottom: -7px;
+    margin-left: 8px;
+    margin-right: 8px;
+}
+
+.post img {
+    width: 70px;
+    margin: 10px;
+}
+
+.inline {
+    display: flex;
+    align-items: center;
+    background-color: white;
+}
+
+.postInfo {
+    display: flex;
+    justify-content: space-between;
+    width:100vw;
+    background-color: white;
+}
+
+
+.name {
+    background-color: white;
+}
+
+.status {
+    background-color: white;
+    display: flex;
+}
+
+.box {
+    width: 12px;
+    height: 12px;
+    background-color: #CE69A7;
+    margin: 10px;
+}
+
+.post h2 {
+    font-family: "Roboto", sans-serif;
+    font-size: 12px;
+}
+
+.post h3 {
+    font-family: "Fresca", sans-serif;
+    font-size: 10px;
+}
+
+.post p {
+    font-family: "Muli", sans-serif;
+    padding: 10px;
+    margin-top: -10px;
+}

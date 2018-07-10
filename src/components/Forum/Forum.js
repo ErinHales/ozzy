@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import Post from '../Post/Post';
+import './Forum.css';
 
 export default class Forum extends Component {
     constructor() {
