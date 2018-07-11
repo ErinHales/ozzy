@@ -39,7 +39,7 @@
     overflow: hidden;
     top: 80px;
     width: 100vw;
-    height: 200px;
+    height: 260px;
     background-color: #9B59B6;
     transition: height 1s cubic-bezier(.4,-0.64,.62,1.74);
 }

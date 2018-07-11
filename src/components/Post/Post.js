@@ -93,7 +93,7 @@ export default class Post extends Component {
 
     render() {
         let { colors, feeds } = this.state;
-        let { date, status, post, first_name, last_name, picture } = this.props.data;
+        let { date, status, post, first_name, last_name, picture, image } = this.props.data;
         let commentArr = [];
         if(this.state.comments[0]) {
             this.state.comments.forEach((comment,i) => {
@@ -125,6 +125,7 @@ export default class Post extends Component {
                     </div>
                 </div>
                 <p>{post}</p>
+                {image ? <img src={image} alt="post Image" /> : null}
                 <div className="iconContainer">
                     <img src={this.state.loved ? "http://i68.tinypic.com/10ht5w0.jpg" : "http://i65.tinypic.com/2e0lnhj.jpg"} alt="love" onClick={() => this.love()} />
                     <img src={this.state.liked ? "http://i65.tinypic.com/29xalxi.jpg" : "http://i67.tinypic.com/2cokgaw.jpg"} alt="" onClick={() => this.like()} />
@@ -132,7 +133,7 @@ export default class Post extends Component {
                     <img src="http://i68.tinypic.com/15cofhi.jpg" alt="" />
                 </div>
         {this.state.showComments ? <input type="text" placeholder="comment" value={this.state.input} onChange={(e) => this.updateCommentInput(e)} onKeyUp={event => (event.key === "Enter" && this.state.input !== "") ? this.comment() : null} /> : null}
-        {this.state.showComments ? <button onClick={() => this.comment()}>submit</button> : null}
+        {this.state.showComments ? <button onClick={() => (this.state.input !== "") ? this.comment() : null}>submit</button> : null}
                 {this.state.showComments ? commentArr : null}
             </div>
         )

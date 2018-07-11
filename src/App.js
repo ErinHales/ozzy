@@ -4,6 +4,7 @@ import Nav from './components/Nav/Nav';
 import Forum from './components/Forum/Forum';
 import Welcome from './components/Welcome/Welcome';
 import NewPost from './components/NewPost/NewPost';
+import Profile from './components/Profile/Profile';
 import './App.css';
 
 class App extends Component {
@@ -16,7 +17,8 @@ class App extends Component {
           <Switch>
             <Route exact path="/" component={Welcome} />
             <Route path="/forum" component={Forum} />
-            <NewPost path="/new" component={NewPost}/>
+            <NewPost path="/new" component={NewPost} />
+            <Profile path="/profile" component={Profile} />
           </Switch>
         </div>
       </HashRouter>

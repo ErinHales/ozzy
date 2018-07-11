@@ -56,7 +56,7 @@ module.exports = {
         })
     },
     newPost: (req,res) => {
-        req.app.get("db").posts.create_post([req.session.user.id, req.body.date, req.body.post, req.body.status]).then(() => {
+        req.app.get("db").posts.create_post([req.session.user.id, req.body.date, req.body.post, req.body.status, req.body.image]).then(() => {
             res.sendStatus(200)
         }).catch(err => {
             res.status(500).send(err);

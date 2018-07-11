@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import Dropzone from 'react-dropzone';
 import './NewPost.css';
 
 export default class NewPost extends Component {
@@ -19,8 +20,10 @@ export default class NewPost extends Component {
             status: "All",
             anonymous: false,
             image: false,
-            url: "http://i67.tinypic.com/29w7a83.jpg"
+            url: ""
         }
+
+        this.onDrop = this.onDrop.bind(this);
     }
     addImage() {
         this.setState({
@@ -41,7 +44,25 @@ export default class NewPost extends Component {
     }
 
     post() {
-        axios.post('/api/newpost', {date: this.state.date, post: this.state.post, status: this.state.status})
+        axios.post('/api/newpost', {date: this.state.date, post: this.state.post, status: this.state.status, image: this.state.url.preview})
+    }
+
+    onDrop(acceptedFiles, rejectedFiles) {
+        acceptedFiles.forEach(file => {
+            console.log(file);
+            const reader = new FileReader();
+            reader.onload = () => {
+                const fileAsBinaryString = reader.result;
+                // do whatever you want with the file content
+            };
+            reader.onabort = () => console.log('file reading was aborted');
+            reader.onerror = () => console.log('file reading has failed');
+    
+            reader.readAsBinaryString(file);
+            this.setState({
+                url: file
+            })
+        });
     }
 
     render() {
@@ -65,7 +86,7 @@ export default class NewPost extends Component {
                     </div>
                     <div>
                         <textarea type="text" placeholder="type here" className="postText" onChange={(e) => this.updatePost(e)}></textarea>
-                        {this.state.image ? <img src={this.state.url} alt="post" className="postImg" /> : null}
+                        {this.state.image ? <Dropzone onDrop={this.onDrop} className='dropzone' multiple={false}><img src={this.state.url ? this.state.url.preview : "http://i67.tinypic.com/29w7a83.jpg"} alt="upload" className="postImg"/></Dropzone> : null}
                         <div className="anonymousBox">
                             <input type="checkbox" />
                             <h3>Ask Anonymously</h3>
