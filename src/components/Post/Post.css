@@ -87,6 +87,7 @@
     padding: 3px;
     width: 75%;
     display: inline-block;
+    outline: none;
 }
 
 .post button {

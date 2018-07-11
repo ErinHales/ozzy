@@ -88,6 +88,7 @@ app.put('/api/love/:postid', postControllers.lovePost);
 app.post('/api/newlike/:postid', postControllers.likeNewPost);
 app.get('/api/comments/:postid', postControllers.getComments);
 app.post('/api/comment/:postid', postControllers.leaveComment);
+app.post('/api/newpost', postControllers.newPost);
 
 
 

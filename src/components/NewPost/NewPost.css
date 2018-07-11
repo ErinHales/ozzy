@@ -1,9 +1,67 @@
-/* .post {
-    height: 100vh;
+body {
+    background-color: #BDC3C7;
+}
+.newPost {
+    height: auto;
+}
+
+.postContainer,
+.postContainer input,
+.postContainer div {
+    background-color: white;
+}
+
+.postContainer {
+    margin: 10px;
 }
 
 .postText {
-    width: 90%;
-    margin: 5%;
     height: 200px;
-} */
+    width: 90%;
+    margin: 4%;
+    padding-top: 10px;
+}
+
+.anonymousBox input,
+.anonymousBox h3 {
+    display: inline-block;
+}
+
+.postContainer .icons {
+    float: right;
+    position: relative;
+    bottom: 60px;
+}
+
+.menu {
+    height: 30px;
+    margin: 10px;
+}
+
+.camera {
+    height: 55px;
+}
+
+.postImg {
+    width: 90%;
+    margin: 4.5%;
+}
+
+.postImg:hover {
+    -webkit-filter:  grayscale(20%) brightness(85%);
+}
+
+.newPostHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+.newPost .status {
+    outline: none;
+}
+
+.status option {
+    outline: none;
+}

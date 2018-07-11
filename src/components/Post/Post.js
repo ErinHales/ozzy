@@ -65,11 +65,11 @@ export default class Post extends Component {
         }
     }
 
-    getComments() {
+    getComments(show) {
         axios.get(`/api/comments/${this.props.data.id}`).then(response =>{
             this.setState({
                 comments: response.data,
-                showComments: !this.state.showComments
+                showComments: show
             })
         })
     }
@@ -82,8 +82,9 @@ export default class Post extends Component {
 
     comment() {
         axios.post(`/api/comment/${this.props.data.id}`, {text: this.state.input}).then(response => {
+            this.getComments(true);
             this.setState({
-                comments: this.state.comments.push(response.data[0])
+                input: ""
             })
         })
     }
@@ -127,10 +128,10 @@ export default class Post extends Component {
                 <div className="iconContainer">
                     <img src={this.state.loved ? "http://i68.tinypic.com/10ht5w0.jpg" : "http://i65.tinypic.com/2e0lnhj.jpg"} alt="love" onClick={() => this.love()} />
                     <img src={this.state.liked ? "http://i65.tinypic.com/29xalxi.jpg" : "http://i67.tinypic.com/2cokgaw.jpg"} alt="" onClick={() => this.like()} />
-                    <img src="http://i68.tinypic.com/3130vwh.jpg" alt="" onClick={() => this.getComments()}/>
+                    <img src="http://i68.tinypic.com/3130vwh.jpg" alt="" onClick={() => this.getComments(!this.state.showComments)}/>
                     <img src="http://i68.tinypic.com/15cofhi.jpg" alt="" />
                 </div>
-        {this.state.showComments ? <input type="text" placeholder="comment" onChange={(e) => this.updateCommentInput(e)} /> : null}
+        {this.state.showComments ? <input type="text" placeholder="comment" value={this.state.input} onChange={(e) => this.updateCommentInput(e)} onKeyUp={event => (event.key === "Enter" && this.state.input !== "") ? this.comment() : null} /> : null}
         {this.state.showComments ? <button onClick={() => this.comment()}>submit</button> : null}
                 {this.state.showComments ? commentArr : null}
             </div>
