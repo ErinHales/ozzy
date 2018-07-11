@@ -1,3 +1,5 @@
+const cloudinary = require('cloudinary');
+
 module.exports = {
     getPosts: (req,res) => {
         req.app.get("db").posts.get_all_posts().then(response => {
@@ -63,4 +65,11 @@ module.exports = {
             console.log(err);
         })
     }
+    // },
+    // upload: (req,res) => {
+    //     console.log(req.body)
+    //     cloudinary.uploader.upload(req.body.file, req.body.upload_preset, function(result) {
+    //         console.log(result);
+    //     })
+    // }
 }

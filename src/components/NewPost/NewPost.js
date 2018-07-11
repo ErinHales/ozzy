@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Dropzone from 'react-dropzone';
+import {Image} from 'cloudinary-react';
 import './NewPost.css';
 
 export default class NewPost extends Component {
@@ -15,16 +16,22 @@ export default class NewPost extends Component {
 
         this.state = {
             post: "",
-            image: "",
             date: postDate,
             status: "All",
             anonymous: false,
             image: false,
-            url: ""
+            url: "",
+            publicId: ""
         }
 
         this.onDrop = this.onDrop.bind(this);
     }
+
+    // componentDidUpdate(prevProps, prevState) {
+    //     if(prevState.url !== this.state.url) {
+    //         this.submit();
+    //     }
+    // }
     addImage() {
         this.setState({
             image: !this.state.image
@@ -44,26 +51,74 @@ export default class NewPost extends Component {
     }
 
     post() {
-        axios.post('/api/newpost', {date: this.state.date, post: this.state.post, status: this.state.status, image: this.state.url.preview})
+        axios.post('/api/newpost', {date: this.state.date, post: this.state.post, status: this.state.status, image: this.state.publicId})
     }
 
-    onDrop(acceptedFiles, rejectedFiles) {
-        acceptedFiles.forEach(file => {
-            console.log(file);
-            const reader = new FileReader();
-            reader.onload = () => {
-                const fileAsBinaryString = reader.result;
-                // do whatever you want with the file content
-            };
-            reader.onabort = () => console.log('file reading was aborted');
-            reader.onerror = () => console.log('file reading has failed');
+    // onDrop(acceptedFiles, rejectedFiles) {
+    //     acceptedFiles.forEach(file => {
+    //         console.log(file);
+    //         const reader = new FileReader();
+    //         reader.onload = () => {
+    //             const fileAsBinaryString = reader.result;
+    //             // do whatever you want with the file content
+    //         };
+    //         reader.onabort = () => console.log('file reading was aborted');
+    //         reader.onerror = () => console.log('file reading has failed');
     
-            reader.readAsBinaryString(file);
+    //         reader.readAsBinaryString(file);
+    //         // this.setState({
+    //         //     url: file
+    //         // })
+    //         this.submit(file);
+    //     });
+    // }
+
+    // submit() {
+    //     const {url} = this.state;
+    //     console.log(url);
+    //     const {REACT_APP_CLOUD_NAME, REACT_APP_UPLOAD_PRESET} = process.env;
+    //     var formData = new FormData();
+    //     formData.append('file', url);
+    //     formData.append('upload_preset', REACT_APP_UPLOAD_PRESET);
+    //     console.log(formData);
+        
+    //     axios.post(`/api/upload`, {file: url, upload_preset: REACT_APP_UPLOAD_PRESET}).then(response => {
+    //         this.setState({
+    //             publicId: response.data.public_id
+    //         })
+    //     })
+    // }
+
+    onDrop = files => {
+        // Push all the axios request promise into a single array
+        let {REACT_APP_UPLOAD_PRESET, CLOUDINARY_API_KEY, REACT_APP_CLOUD_NAME} = process.env;
+        const uploaders = files.map(file => {
+          // Initial FormData
+          const formData = new FormData();
+          formData.append("file", file);
+          formData.append("upload_preset", REACT_APP_UPLOAD_PRESET); // Replace the preset name with your own
+          formData.append("api_key", CLOUDINARY_API_KEY); // Replace API key with your own Cloudinary key
+          formData.append("timestamp", (Date.now() / 1000) | 0);
+          
+          // Make an AJAX upload request using Axios (replace Cloudinary URL below with your own)
+          return axios.post(`https://api.cloudinary.com/v1_1/${REACT_APP_CLOUD_NAME}/image/upload`, formData, {
+            headers: { "X-Requested-With": "XMLHttpRequest" },
+          }).then(response => {
+            const data = response.data;
+            const fileURL = data.secure_url // You should store this URL for future references in your app
+            console.log(file);
             this.setState({
-                url: file
+                publicId: data.public_id,
+                url: fileURL
             })
+            console.log(data);
+          })
         });
-    }
+        axios.all(uploaders).then(() => {
+            // ... perform after upload is successful operation
+            
+          });
+        }
 
     render() {
         return (
@@ -86,7 +141,8 @@ export default class NewPost extends Component {
                     </div>
                     <div>
                         <textarea type="text" placeholder="type here" className="postText" onChange={(e) => this.updatePost(e)}></textarea>
-                        {this.state.image ? <Dropzone onDrop={this.onDrop} className='dropzone' multiple={false}><img src={this.state.url ? this.state.url.preview : "http://i67.tinypic.com/29w7a83.jpg"} alt="upload" className="postImg"/></Dropzone> : null}
+                        {this.state.image ? <Dropzone onDrop={this.onDrop} className='dropzone'  multiple={false}>
+                        <img src={this.state.url ? this.state.url : "http://i67.tinypic.com/29w7a83.jpg"} alt="upload" className="postImg"/></Dropzone> : null}
                         <div className="anonymousBox">
                             <input type="checkbox" />
                             <h3>Ask Anonymously</h3>

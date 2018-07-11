@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const massive = require('massive');
 const session = require('express-session');
 const axios = require('axios');
+const cloudinary = require('cloudinary');
 require('dotenv').config();
 
 // controllers
@@ -20,6 +21,12 @@ app.use(session({
     saveUninitialized: false,
     resave: false,
   }));
+
+  cloudinary.config({ 
+    cloud_name: process.env.REACT_APP_CLOUD_NAME, 
+    api_key: process.env.CLOUDINARY_API_KEY, 
+    api_secret: process.env.CLOUDINARY_API_SECRET 
+  });
 
 massive(CONNECTION_STRING).then(function(db) {
     app.set("db", db);
@@ -73,6 +80,10 @@ app.get('/auth/callback', (req, res) => {
     })
     
   
+//Cloudinary
+
+
+
 // auth controllers
 app.post('/api/logout', authControllers.logout);
 app.get('/api/user-data', authControllers.userData);
@@ -89,6 +100,8 @@ app.post('/api/newlike/:postid', postControllers.likeNewPost);
 app.get('/api/comments/:postid', postControllers.getComments);
 app.post('/api/comment/:postid', postControllers.leaveComment);
 app.post('/api/newpost', postControllers.newPost);
+// app.post('/api/upload', postControllers.upload);
+
 
 
 
