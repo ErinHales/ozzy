@@ -54,41 +54,6 @@ export default class NewPost extends Component {
         axios.post('/api/newpost', {date: this.state.date, post: this.state.post, status: this.state.status, image: this.state.publicId})
     }
 
-    // onDrop(acceptedFiles, rejectedFiles) {
-    //     acceptedFiles.forEach(file => {
-    //         console.log(file);
-    //         const reader = new FileReader();
-    //         reader.onload = () => {
-    //             const fileAsBinaryString = reader.result;
-    //             // do whatever you want with the file content
-    //         };
-    //         reader.onabort = () => console.log('file reading was aborted');
-    //         reader.onerror = () => console.log('file reading has failed');
-    
-    //         reader.readAsBinaryString(file);
-    //         // this.setState({
-    //         //     url: file
-    //         // })
-    //         this.submit(file);
-    //     });
-    // }
-
-    // submit() {
-    //     const {url} = this.state;
-    //     console.log(url);
-    //     const {REACT_APP_CLOUD_NAME, REACT_APP_UPLOAD_PRESET} = process.env;
-    //     var formData = new FormData();
-    //     formData.append('file', url);
-    //     formData.append('upload_preset', REACT_APP_UPLOAD_PRESET);
-    //     console.log(formData);
-        
-    //     axios.post(`/api/upload`, {file: url, upload_preset: REACT_APP_UPLOAD_PRESET}).then(response => {
-    //         this.setState({
-    //             publicId: response.data.public_id
-    //         })
-    //     })
-    // }
-
     onDrop = files => {
         // Push all the axios request promise into a single array
         let {REACT_APP_UPLOAD_PRESET, CLOUDINARY_API_KEY, REACT_APP_CLOUD_NAME} = process.env;

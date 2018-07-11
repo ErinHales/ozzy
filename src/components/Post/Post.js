@@ -94,6 +94,7 @@ export default class Post extends Component {
 
     render() {
         let { colors, feeds } = this.state;
+        console.log(this.props.data.image);
         let { date, status, post, first_name, last_name, picture, image } = this.props.data;
         let commentArr = [];
         if(this.state.comments[0]) {
@@ -126,7 +127,7 @@ export default class Post extends Component {
                     </div>
                 </div>
                 <p>{post}</p>
-                {image ? <Image cloudName={process.env.REACT_APP_CLOUD_NAME} publicId={image} /> : null}
+                {image ? <Image cloudName={process.env.REACT_APP_CLOUD_NAME} publicId={image} className="postedImg" /> : null}
                 <div className="iconContainer">
                     <img src={this.state.loved ? "http://i68.tinypic.com/10ht5w0.jpg" : "http://i65.tinypic.com/2e0lnhj.jpg"} alt="love" onClick={() => this.love()} />
                     <img src={this.state.liked ? "http://i65.tinypic.com/29xalxi.jpg" : "http://i67.tinypic.com/2cokgaw.jpg"} alt="" onClick={() => this.like()} />

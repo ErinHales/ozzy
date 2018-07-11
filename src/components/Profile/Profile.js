@@ -14,6 +14,10 @@ export default class Profile extends Component {
         }
     }
 
+    // componentDidMount() {
+    //     axios.get('')
+    // }
+
     render() {
         return (
             <div className="profileSettings">

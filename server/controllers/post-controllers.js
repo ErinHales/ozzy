@@ -65,11 +65,4 @@ module.exports = {
             console.log(err);
         })
     }
-    // },
-    // upload: (req,res) => {
-    //     console.log(req.body)
-    //     cloudinary.uploader.upload(req.body.file, req.body.upload_preset, function(result) {
-    //         console.log(result);
-    //     })
-    // }
 }
