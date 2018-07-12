@@ -26,7 +26,7 @@ export default class Forum extends Component {
             postsArr.push(<Post key={i} data={post} />)
         })
         return (
-            <div>
+            <div className="forumPage">
                 {postsArr}
             </div>
         )

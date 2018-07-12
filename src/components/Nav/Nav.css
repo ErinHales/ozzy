@@ -32,6 +32,7 @@
     overflow:hidden;
     background-color: #9B59B6;
     transition: height 1s cubic-bezier(.4,-0.64,.62,1.74);
+    z-index: 1;
 }
 
 .menuOn {
@@ -42,6 +43,7 @@
     height: 260px;
     background-color: #9B59B6;
     transition: height 1s cubic-bezier(.4,-0.64,.62,1.74);
+    z-index: 1;
 }
 
 .menuLinks {

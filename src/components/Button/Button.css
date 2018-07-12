@@ -6,4 +6,10 @@ button {
     border: none;
     padding: 10px;
     font-size: 24px;
+    transition: bottom 1s ease;
+}
+
+.primaryButton:hover {
+    position: relative;
+    bottom: 3px;
 }

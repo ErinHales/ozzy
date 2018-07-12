@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Dropzone from 'react-dropzone';
-import {Image} from 'cloudinary-react';
 import './NewPost.css';
 
 export default class NewPost extends Component {
@@ -9,9 +8,9 @@ export default class NewPost extends Component {
         super();
 
         const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-        var date = new Date();
-        var month = date.getMonth();
-        var date = date.getDate();
+        var d = new Date();
+        var month = d.getMonth();
+        var date = d.getDate();
         let postDate = `${months[month]} ${date}, 2018`;
 
         this.state = {

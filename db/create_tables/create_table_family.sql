@@ -2,5 +2,6 @@ CREATE TABLE Family (
 id SERIAL PRIMARY KEY,
 userid INTEGER,
 name VARCHAR(120),
-image VARCHAR(300)
+image VARCHAR(300),
+relationship VARCHAR(40)
 );

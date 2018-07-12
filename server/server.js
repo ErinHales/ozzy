@@ -9,10 +9,13 @@ require('dotenv').config();
 // controllers
 const authControllers = require('./controllers/auth-controllers');
 const postControllers = require('./controllers/post-controllers');
+const userControllers = require('./controllers/users-controllers');
+// const authMiddleware = require('./authMiddleware/authMiddleware');
 
 const app = express();
 
 app.use(bodyParser.json());
+// app.use(authMiddleware.bypassAuthInDevelopment);
 
 const {SERVER_PORT, CONNECTION_STRING, SESSION_SECRET} = process.env;
 
@@ -100,7 +103,9 @@ app.post('/api/newlike/:postid', postControllers.likeNewPost);
 app.get('/api/comments/:postid', postControllers.getComments);
 app.post('/api/comment/:postid', postControllers.leaveComment);
 app.post('/api/newpost', postControllers.newPost);
-// app.post('/api/upload', postControllers.upload);
+app.get('/api/getuserinfo', userControllers.getUserInfo);
+app.put('/api/parentinfo', userControllers.updateParentInfo);
+app.put('/api/userinfo', userControllers.updateUserInfo);
 
 
 
