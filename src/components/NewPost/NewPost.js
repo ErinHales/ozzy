@@ -26,11 +26,6 @@ export default class NewPost extends Component {
         this.onDrop = this.onDrop.bind(this);
     }
 
-    // componentDidUpdate(prevProps, prevState) {
-    //     if(prevState.url !== this.state.url) {
-    //         this.submit();
-    //     }
-    // }
     addImage() {
         this.setState({
             image: !this.state.image

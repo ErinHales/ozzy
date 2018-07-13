@@ -1,50 +1,69 @@
 import React from 'react';
 import Dropzone from 'react-dropzone';
-import Image from 'react-dropzone';
+// import axios from 'axios';
 import './Profile.css';
 
 export default function Edit(props) {
 
-    //props needs setStatus(bind setStatus), profileURL, status, newsfeed, delete function(takes in newsfeed item to be deleted) addSubscription(takes in subscription to be added, use e.target.value), seeking child care, onDrop function, toggleChildCare, update family members picture, add family member
 
+
+    // onDrop = (files) => {
+    //     // Push all the axios request promise into a single array
+    //     let { REACT_APP_UPLOAD_PRESET, CLOUDINARY_API_KEY, REACT_APP_CLOUD_NAME } = process.env;
+    //     // const uploaders = 
+    //     files.map(file => {
+    //         // Initial FormData
+    //         const formData = new FormData();
+    //         formData.append("file", file);
+    //         formData.append("upload_preset", REACT_APP_UPLOAD_PRESET); // Replace the preset name with your own
+    //         formData.append("api_key", CLOUDINARY_API_KEY); // Replace API key with your own Cloudinary key
+    //         formData.append("timestamp", (Date.now() / 1000) | 0);
+
+    //         // Make an AJAX upload request using Axios (replace Cloudinary URL below with your own)
+    //         return axios.post(`https://api.cloudinary.com/v1_1/${REACT_APP_CLOUD_NAME}/image/upload`, formData, {
+    //             headers: { "X-Requested-With": "XMLHttpRequest" },
+    //         }).then(response => {
+    //             const data = response.data;
+    //             const fileURL = data.secure_url // You should store this URL for future references in your app
+    //             console.log(file);
+    //             let copy = this.state.family.slice();
+    //             copy[i].image = fileURL
+    //             this.setState({
+    //                 // publicId: data.public_id,
+    //                 family: copy
+    //             })
+    //             console.log(data);
+    //         })
+    //     });
+    //     // axios.all(uploaders).then(() => {
+    //     //     // ... perform after upload is successful operation
+    //     //     console.log(uploaders);
+    //     // });
+    // }
+
+    
     let newsfeedArr = props.newsfeed.split(", ").map(item => {
         return <button className="editButton" onClick={() => props.deleteSubscription(item)}>{item}<img src="http://i68.tinypic.com/23wwjnc.jpg" alt="delete" /></button>
-    })
-
-    // let displayFamily = [];
-    // this.state.family.forEach((person, i) => {
-    //     return displayFamily.push(
-    //         <div className="familyMember" key={i}>
-    //             <div>
-    //                 <h3>{person.name}</h3>
-    //                 <h4>{person.relationship}</h4>
-    //             </div>
-    //             <Image cloudName={process.env.REACT_APP_CLOUD_NAME} publicId={person.image} />
-    //         </div>
-    //     )
-    // })
-
-
+    });
     let displayFamily = [];
     props.family.forEach((person, i) => {
         return displayFamily.push(
             <div className="familyMember" key={i}>
-                <div>
-                    <input placeholder={person.name} type="text" />
-                    <input placeholder={person.relationship} type="text" />
-                </div>
-                <Dropzone onDrop={props.onDrop} className='dropzone' multiple={false}>
-                    <Image cloudName={process.env.REACT_APP_CLOUD_NAME} publicId={person.image} />
+                <Dropzone onDrop={(file) => props.onDropFam(file, i)} multiple={false} className="dropzone">
+                    <img src={person.image} alt="family" />
                 </Dropzone>
-            </div>
-        )
+                <div>
+                    <input placeholder={person.name} type="text" onChange={(e) => this.updateName(i, e)} />
+                    < input placeholder={person.relationship} type="text" onChange={(e) => props.updateRelationship(i, e)} />
+                </div>
+            </div>)
     })
-
     return (
         <div className="profileSettings">
-            <Dropzone onDrop={props.onDrop} className='dropzone' multiple={false}>
-                <img src={props.profileURL} alt="upload" className="profilePicture" /></Dropzone>
-            <div className="displayEditStatus">
+            <Dropzone onDrop={props.onDrop} multiple={false} className="profilePicture">
+                <img src={props.profileURL} alt="upload" className="profilePicture" />
+            </Dropzone>
+            <div className="profileContainer">
                 <h3>Status: {props.status}</h3>
                 <select className="status" onChange={(e) => props.setStatus(e)}>
                     <option value="Parent">Parent</option>
@@ -55,8 +74,6 @@ export default function Edit(props) {
                     <option value="Nanny">Nanny</option>
                     <option value="Other">Other</option>
                 </select>
-            </div>
-            <div className="subscriptionsContainer">
                 <h3>Subscribed News Channels:</h3>
                 <select className="status" onChange={(e) => props.addSubscription(e.target.value)}>
                     <option value="Just Moms">Just Moms</option>
@@ -69,15 +86,13 @@ export default function Edit(props) {
                     <option value="Teen">Teen</option>
                     <option value="All Grown Up">All Grown Up</option>
                 </select>
-            </div>
-            <div>
                 {newsfeedArr}
-            </div>
-            <div className="childCareContainer">
                 <h3>Seeking Child Care: </h3>
                 <button className="editButton" onClick={() => props.toggleChildCare()}>{props.seekingChildCare ? "Yes" : "No"}</button>
             </div>
-            {displayFamily}
+            <div className="displayEditFamily">
+                {displayFamily}
+            </div>
         </div>
     )
 }

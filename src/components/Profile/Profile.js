@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Image } from 'cloudinary-react';
 import Edit from './Edit.js';
 import Default from './Default.js';
 import './Profile.css';
@@ -15,8 +14,7 @@ export default class Profile extends Component {
             subscribedNewsFeeds: [],
             seekingChildCare: false,
             family: [],
-            edit: false,
-            publicId: ""
+            edit: false
         }
     }
 
@@ -39,12 +37,12 @@ export default class Profile extends Component {
     }
 
     saveChanges() {
-        let { status, seekingChildCare, subscribedNewsFeeds, publicId } = this.state;
+        let { status, seekingChildCare, profileURL, subscribedNewsFeeds } = this.state;
         axios.put('/api/parentinfo', { status: status, childCare: seekingChildCare, subscriptions: subscribedNewsFeeds }).then(() => {
             console.log('Parent info updated');
         })
-        if (publicId) {
-            axios.put('/api/userinfo', { picture: publicId }).then(() => {
+        if (profileURL) {
+            axios.put('/api/userinfo', { picture: profileURL }).then(() => {
                 console.log('User info updated')
             })
         }
@@ -69,7 +67,7 @@ export default class Profile extends Component {
                 const fileURL = data.secure_url // You should store this URL for future references in your app
                 console.log(file);
                 this.setState({
-                    publicId: data.public_id,
+                    // publicId: data.public_id,
                     profileURL: fileURL
                 })
                 console.log(data);
@@ -121,18 +119,6 @@ export default class Profile extends Component {
     }
 
     render() {
-        let displayFamily = [];
-        this.state.family.forEach((person, i) => {
-            return displayFamily.push(
-                <div className="familyMember" key={i}>
-                    <div>
-                        <h3>{person.name}</h3>
-                        <h4>{person.relationship}</h4>
-                    </div>
-                    <Image cloudName={process.env.REACT_APP_CLOUD_NAME} publicId={person.image} />
-                </div>
-            )
-        })
         const { edit, profileURL, status, subscribedNewsFeeds, seekingChildCare, family } = this.state;
         return (
             <div>

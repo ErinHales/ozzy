@@ -2,51 +2,40 @@
     width: 200px;
 }
 
-.profileSettings {
+.profileSettings .profilePicture {
+    width: 100vw;
+}
+
+.profileSettings .family {
+    margin-top: 20px;
     background-color: white;
+    margin: 10px;
+    padding: 10px;
 }
 
-.profileSettings h3,
-.profileSettings h4 {
-    margin-left: 10px;
-    margin-right: 5px;
-}
-
-.profileSettings.displayFamily {
-    display: flex;
-    justify-content: space-around;
+.profileSettings .settingsContainer {
+    background-color: white;
+    margin: 10px;
+    padding: 10px;
 }
 
 .profileSettings .familyMember {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    padding: 20px;
-}
-
-.profileSettings .profilePicture {
-    width: 100vw;
-}
-
-.profileSettings div {
-    background-color: white;
+    margin-bottom: 10px;
 }
 
 .buttonContainer {
     width: 100vw;
     display: flex;
     justify-content: center;
-    background-color: white;
+    padding-top: 20px;
     padding-bottom: 20px;
 }
 
-.profileSettings .displayEditStatus {
-    display: flex;
-    align-items: center;
-}
-
-.displayEditStatus > h3 {
-    margin-right: 10px;
+.family h3,
+.family h4 {
+    margin-left: 10px;
 }
 
 .profileSettings .editButton {
@@ -62,19 +51,6 @@
     bottom: 3px;
 }
 
-.profileSettings .subscriptionsContainer {
-    display: flex;
-    align-items: center;
-    margin-top: 10px;
-}
-
-.profileSettings .childCareContainer {
-    display: flex;
-    align-items: center;
-    margin-top: 30px;
-    padding-bottom: 20px;
-}
-
 .editButton img {
     height: 14px;
     width: 14px;
@@ -85,4 +61,20 @@
 .cancelButton {
     background-color: #961416;
     margin-left: 20px;
+} 
+
+.profileSettings .profileContainer {
+    background-color: white;
+    margin: 10px;
+    padding: 10px;
+}
+
+.displayEditFamily {
+    background-color: white;
+    margin: 10px;
+    padding:10px;
+}
+
+.displayEditFamily input {
+    margin: 10px;
 }
