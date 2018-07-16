@@ -1,3 +1,17 @@
 .forumPage {
     background-color: #BDC3C7;
 }
+
+.pencilButton {
+    background-color: #9B59B6;
+    padding: 5px;
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+    border-radius: 50%;
+}
+
+.pencilButton img {
+    width: 30px;
+    height: 30px;
+}

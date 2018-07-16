@@ -14,7 +14,7 @@ export default class Profile extends Component {
             subscribedNewsFeeds: [],
             seekingChildCare: false,
             family: [],
-            edit: false
+            edit: false 
         }
     }
 
@@ -24,7 +24,7 @@ export default class Profile extends Component {
             let { picture, seeking_childcare, status, newsfeed } = response.data[0];
             let familyMembers = [];
             response.data.forEach((person, i) => {
-                familyMembers.push({ name: person.name, image: person.image, relationship: person.relationship });
+                familyMembers.push({ name: person.name, image: person.image, relationship: person.relationship, id: person.family_id });
             })
             this.setState({
                 profileURL: picture,

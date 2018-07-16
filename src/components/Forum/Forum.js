@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import Post from '../Post/Post';
+import {Link} from 'react-router-dom';
 import './Forum.css';
 
 export default class Forum extends Component {
@@ -28,6 +29,7 @@ export default class Forum extends Component {
         return (
             <div className="forumPage">
                 {postsArr}
+                <Link to="/new" className="pencilButton"><img src="http://i66.tinypic.com/30ix6bm.jpg" alt=""/></Link>
             </div>
         )
     }

@@ -107,7 +107,7 @@ app.post('/api/newpost', postControllers.newPost);
 app.get('/api/getuserinfo', userControllers.getUserInfo);
 app.put('/api/parentinfo', userControllers.updateParentInfo);
 app.put('/api/userinfo', userControllers.updateUserInfo);
-app.put('/api/familypic/:id', userControllers.updateFamilyMemberPic);
+app.put('/api/familypic', userControllers.updateFamilyMemberPic);
 
 
 // care providers 

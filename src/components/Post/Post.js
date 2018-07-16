@@ -127,7 +127,7 @@ export default class Post extends Component {
                     </div>
                 </div>
                 <p>{post}</p>
-                {image ? <Image cloudName={process.env.REACT_APP_CLOUD_NAME} publicId={image} className="postedImg" /> : null}
+                {image ? <Image cloudName={process.env.REACT_APP_CLOUD_NAME} publicId={image} id="postedImg" /> : null}
                 <div className="iconContainer">
                     <img src={this.state.loved ? "http://i68.tinypic.com/10ht5w0.jpg" : "http://i65.tinypic.com/2e0lnhj.jpg"} alt="love" onClick={() => this.love()} />
                     <img src={this.state.liked ? "http://i65.tinypic.com/29xalxi.jpg" : "http://i67.tinypic.com/2cokgaw.jpg"} alt="" onClick={() => this.like()} />

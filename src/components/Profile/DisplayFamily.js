@@ -19,16 +19,16 @@ export default class DisplayFamily extends Component {
 
     // componentDidUpdate(prevProps, prevState) {
     //     if(prevState.familyPic !== this.state.familyPic) {
-    //         axios.put(`/api/familypic/${this.props.person.family_id}`).then(res => {
-    //             console.log(`Family member ${this.props.person.family_id} has a new picture!`);
+    //         axios.put(`/api/familypic`, {id: this.props.person.id, url: this.state.familyPic}).then(res => {
+    //             console.log(`Family member ${this.props.person.id} has a new picture!`);
     //         })
     //     }
     // }
 
-    onDrop = file => {
+    onDrop = files => {
         // Push all the axios request promise into a single array
         let { REACT_APP_UPLOAD_PRESET, CLOUDINARY_API_KEY, REACT_APP_CLOUD_NAME } = process.env;
-        // const uploaders = files.map(file => {
+        const uploaders = files.map(file => {
             // Initial FormData
             const formData = new FormData();
             formData.append("file", file);
@@ -40,25 +40,21 @@ export default class DisplayFamily extends Component {
             return axios.post(`https://api.cloudinary.com/v1_1/${REACT_APP_CLOUD_NAME}/image/upload`, formData, {
                 headers: { "X-Requested-With": "XMLHttpRequest" },
             }).then(response => {
-                const data = response.data;
-                const fileURL = data.secure_url // You should store this URL for future references in your app
+                const fileURL = response.data.secure_url // You should store this URL for future references in your app
                 console.log(file);
                 this.setState({
                     // publicId: data.public_id,
                     familyPic: fileURL
                 })
             })
-        // });
-        // axios.all(uploaders).then(() => {
-            // ... perform after upload is successful operation
-            // console.log(uploaders);
-        // });
+        });
     }
 
     render() {
+        console.log(this.props.person.id);
         return (
             <div className="familyMember">
-                    <Dropzone onDrop={this.onDrop} multiple={false} className="dropzone">
+                  <Dropzone onDrop={this.onDrop} multiple={false} className="dropzone">
                         <img src={this.state.familyPic} alt="family" />
                     </Dropzone>
                     <div>

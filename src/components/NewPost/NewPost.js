@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Dropzone from 'react-dropzone';
+import {Link} from 'react-router-dom';
 import './NewPost.css';
 
 export default class NewPost extends Component {
@@ -84,7 +85,7 @@ export default class NewPost extends Component {
             <div className="newPost">
                 <div className="postContainer">
                     <div className="newPostHeader">
-                        <button onClick={() => this.post()}>Post</button>
+                        <Link to="/forum"><button onClick={() => this.post()}>Post</button></Link>
                         <select className="status" onChange={(e) => this.setStatus(e)}>
                             <option value="All">All</option>
                             <option value="Just Moms">Just Moms</option>
@@ -112,6 +113,11 @@ export default class NewPost extends Component {
                         </div>
                     </div>
                 </div>
+                <Link to="/forum">
+                    <div className="backButtonContainer">
+                        <button>Back to Forum</button>
+                    </div>
+                </Link>
             </div>
         )
     }

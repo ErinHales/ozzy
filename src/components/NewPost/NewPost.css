@@ -68,3 +68,9 @@ body {
 .status option {
     outline: none;
 }
+
+.backButtonContainer {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+}

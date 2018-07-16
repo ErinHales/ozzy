@@ -48,6 +48,7 @@ export default class Edit extends Component {
                     <button className="editButton" onClick={() => this.props.toggleChildCare()}>{this.props.seekingChildCare ? "Yes" : "No"}</button>
                 </div>
                 <div className="displayEditFamily">
+                    <h3>Family:</h3>
                     {displayFamily}
                 </div>
             </div>
