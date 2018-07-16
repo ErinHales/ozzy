@@ -1,0 +1,38 @@
+.careProvider {
+    background-color: white;
+    margin: 10px;
+    padding: 10px;
+}
+
+.careProviderHeader {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-around;
+}
+
+.careProviderHeader img {
+    width: 80px;
+}
+
+.careProviderInfo {
+    width: 300px;
+    margin-left: 10px;
+}
+
+.rating {
+    display: flex;
+    width: 150px;
+    justify-content: space-around;
+    align-items: baseline;
+    float: right;
+}
+
+.rating img {
+    width: 20px;
+}
+
+.careProviderInfo h3,
+.careProviderInfo h4 {
+    padding: 0px;
+    margin: 0px;
+}

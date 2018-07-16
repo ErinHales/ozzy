@@ -22,5 +22,13 @@ module.exports = {
             res.status(500).send(err);
             console.log(err);
         })
+    },
+    updateFamilyMemberPic: (req,res) => {
+        req.app.get("db").users.update_parent_info([req.params.id, req.body.url]).then(res => {
+            res.sendStatus(200);
+        }).catch(err => {
+            res.status(500).send(err);
+            console.log(err);
+        })
     }
 }

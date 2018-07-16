@@ -5,11 +5,11 @@ import Forum from './components/Forum/Forum';
 import Welcome from './components/Welcome/Welcome';
 import NewPost from './components/NewPost/NewPost';
 import Profile from './components/Profile/Profile';
+import Map from './components/Map/Map';
 import './App.css';
 
 class App extends Component {
   render() {
-    console.log(window.location);
     return (
       <HashRouter>
         <div>
@@ -17,8 +17,9 @@ class App extends Component {
           <Switch>
             <Route exact path="/" component={Welcome} />
             <Route path="/forum" component={Forum} />
-            <NewPost path="/new" component={NewPost} />
-            <Profile path="/profile" component={Profile} />
+            <Route path="/new" component={NewPost} />
+            <Route path="/profile" component={Profile} />
+            <Route path="/find" component={Map} />
           </Switch>
         </div>
       </HashRouter>

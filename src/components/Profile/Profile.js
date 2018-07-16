@@ -36,6 +36,22 @@ export default class Profile extends Component {
         })
     }
 
+    updateName = (index, e) => {
+        let copy = this.state.family.slice();
+        copy[index].name = e.target.value;
+        this.setState({
+            family: copy
+        })
+    }
+
+    updateRelationship = (index, e) => {
+        let copy = this.state.family.slice();
+        copy[index].relationship = e.target.value;
+        this.setState({
+            family: copy
+        })
+    } 
+
     saveChanges() {
         let { status, seekingChildCare, profileURL, subscribedNewsFeeds } = this.state;
         axios.put('/api/parentinfo', { status: status, childCare: seekingChildCare, subscriptions: subscribedNewsFeeds }).then(() => {
@@ -75,9 +91,10 @@ export default class Profile extends Component {
         });
         axios.all(uploaders).then(() => {
             // ... perform after upload is successful operation
-
+            console.log(uploaders);
         });
     }
+
 
     toggleEdit = () => {
         this.setState({
@@ -85,9 +102,9 @@ export default class Profile extends Component {
         })
     }
 
-    setStatus = (e) => {
+    setStatus = (val) => {
         this.setState({
-            status: e.target.value
+            status: val
         })
     }
 
@@ -122,7 +139,7 @@ export default class Profile extends Component {
         const { edit, profileURL, status, subscribedNewsFeeds, seekingChildCare, family } = this.state;
         return (
             <div>
-                {edit ? <Edit setStatus={this.setStatus} profileURL={profileURL} status={status} newsfeed={subscribedNewsFeeds} deleteSubscription={this.deleteSubscription} addSubscription={this.addSubscription} seekingChildCare={seekingChildCare} onDrop={this.onDrop} toggleChildCare={this.toggleChildCare} family={family} /> : <Default profileURL={profileURL} status={status} subscribedNewsFeeds={subscribedNewsFeeds} seekingChildCare={seekingChildCare} family={family} />}
+                {edit ? <Edit updateName={this.updateName} updateRelationship={this.updateRelationship} setStatus={this.setStatus} profileURL={profileURL} status={status} newsfeed={subscribedNewsFeeds} deleteSubscription={this.deleteSubscription} addSubscription={this.addSubscription} seekingChildCare={seekingChildCare} onDrop={this.onDrop} toggleChildCare={this.toggleChildCare} family={family} /> : <Default profileURL={profileURL} status={status} subscribedNewsFeeds={subscribedNewsFeeds} seekingChildCare={seekingChildCare} family={family} />}
                 <div className="buttonContainer">
                     {edit ? <button className="editProfileButton" onClick={() => {
                         this.saveChanges();

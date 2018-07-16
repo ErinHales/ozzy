@@ -10,6 +10,7 @@ require('dotenv').config();
 const authControllers = require('./controllers/auth-controllers');
 const postControllers = require('./controllers/post-controllers');
 const userControllers = require('./controllers/users-controllers');
+const careControllers = require('./controllers/care-controllers');
 // const authMiddleware = require('./authMiddleware/authMiddleware');
 
 const app = express();
@@ -106,6 +107,11 @@ app.post('/api/newpost', postControllers.newPost);
 app.get('/api/getuserinfo', userControllers.getUserInfo);
 app.put('/api/parentinfo', userControllers.updateParentInfo);
 app.put('/api/userinfo', userControllers.updateUserInfo);
+app.put('/api/familypic/:id', userControllers.updateFamilyMemberPic);
+
+
+// care providers 
+app.get('/api/addresses', careControllers.getAddresses);
 
 
 
