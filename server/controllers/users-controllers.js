@@ -24,7 +24,7 @@ module.exports = {
         })
     },
     updateFamilyMemberPic: (req,res) => {
-        req.app.get("db").users.update_parent_info([req.body.id, req.body.url]).then(res => {
+        req.app.get("db").users.update_family_picture([req.body.id, req.body.url]).then(res => {
             res.sendStatus(200);
         }).catch(err => {
             res.status(500).send(err);

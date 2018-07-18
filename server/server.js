@@ -70,7 +70,7 @@ app.get('/auth/callback', (req, res) => {
           let {given_name: first_name, family_name: last_name, email: username, sub, picture} = response.data;
           app.get("db").users.register_user([first_name, last_name, username, sub, picture]).then(newUser => {
             req.session.user = newUser[0];
-            return res.redirect('http://localhost:3000/#/forum');
+            return res.redirect('http://localhost:3000/#/getstarted');
           })
         }
       })   

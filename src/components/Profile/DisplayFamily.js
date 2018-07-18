@@ -7,23 +7,25 @@ export default class DisplayFamily extends Component {
         super();
         
         this.state = {
-            familyPic: ""
+            familyPic: "",
+            newImg: ""
         }
     }
 
     componentDidMount() {
         this.setState({
-            familyPic: this.props.person.image
+            familyPic: this.props.person.image,
+            newImg: this.props.person.image
         })
     }
 
-    // componentDidUpdate(prevProps, prevState) {
-    //     if(prevState.familyPic !== this.state.familyPic) {
-    //         axios.put(`/api/familypic`, {id: this.props.person.id, url: this.state.familyPic}).then(res => {
-    //             console.log(`Family member ${this.props.person.id} has a new picture!`);
-    //         })
-    //     }
-    // }
+    componentDidUpdate(prevProps, prevState) {
+        if(prevState.familyPic !== this.state.familyPic) {
+            axios.put(`/api/familypic`, {id: this.props.person.id, url: this.state.familyPic}).then(res => {
+                console.log(`Family member ${this.props.person.id} has a new picture!`);
+            })
+        }
+    }
 
     onDrop = files => {
         // Push all the axios request promise into a single array
