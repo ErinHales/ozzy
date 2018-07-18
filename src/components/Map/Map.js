@@ -48,11 +48,15 @@ export default class Map extends Component {
     }
 
     async getCoords(address) {
-        var data = await axios.post(`http://maps.googleapis.com/maps/api/geocode/json?address=${address}$key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}`);
-        return {
-            lat: data.data.results[0].geometry.location.lat,
-            lng: data.data.results[0].geometry.location.lng
-        }
+		return new Promise((resolve, reject) => {
+			axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${address}?key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}`)
+				.then(response => {
+					return resolve({
+						lat: response.data.results[0].geometry.location.lat,
+						lng: response.data.results[0].geometry.location.lng
+					})
+				})
+		})
     }
 
     render() {
@@ -69,7 +73,7 @@ export default class Map extends Component {
                 mapArr.push(<MapItem lat={response.lat} lng={response.lng} />)
             })
         })
-        
+
         return (
             // Important! Always set the container height explicitly
             <div style={{ height: '300px', width: '100%' }}>
