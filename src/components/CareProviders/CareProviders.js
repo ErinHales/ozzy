@@ -15,14 +15,8 @@ export default class CareProvider extends Component {
 
     componentDidMount() {
             var address = "1491 W 1700 N, Provo, UT 84604, USA";
-            axios.post(`http://maps.googleapis.com/maps/api/geocode/json?address=${address}`).then(response => {
-                var result = response.data.results[0];
-                if (result) {
-                    console.log("Worked")
-                }else {
-                    console.log("Whoops");
-                }
-                // console.log(response.data.results);
+
+            axios.get(`http://maps.googleapis.com/maps/api/geocode/json?address=${address}`).then(response => {
                 this.setState({
                     lat: response.data.results[0].geometry.location.lat,
                     lng: response.data.results[0].geometry.location.lng
@@ -30,7 +24,7 @@ export default class CareProvider extends Component {
             })
                 // console.log(response.data.results[0].geometry.location.lat);
     }
-    
+
     render() {
         return (
             <div className="careProvider">
