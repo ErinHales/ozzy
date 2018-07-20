@@ -6,6 +6,7 @@ import Welcome from './components/Welcome/Welcome';
 import NewPost from './components/NewPost/NewPost';
 import Profile from './components/Profile/Profile';
 import Map from './components/Map/Map';
+import Questions from './components/Questions/Questions';
 import './App.css';
 
 class App extends Component {
@@ -20,6 +21,7 @@ class App extends Component {
             <Route path="/new" component={NewPost} />
             <Route path="/profile" component={Profile} />
             <Route path="/find" component={Map} />
+            <Route path="/getstarted" component={Questions} />
           </Switch>
         </div>
       </HashRouter>

@@ -78,3 +78,7 @@
 .displayEditFamily input {
     margin: 10px;
 }
+
+.familyMember input {
+    width: 120px;
+}

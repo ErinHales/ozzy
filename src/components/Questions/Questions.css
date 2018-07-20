@@ -1,0 +1,45 @@
+.getStarted,
+.question1,
+.parentQ,
+.careProviderQ {
+    position: absolute;
+    width: 100vw;
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    overflow: hidden;
+    text-align: center;
+    transition: left 1.5s;
+    background-color: #9B59B6;
+    color: white;
+}
+
+.question1 button,
+.parentQ button,
+.careProviderQ button {
+    padding: 5px;
+    font-size: 20px;
+    margin: 5px;
+}
+
+#next {
+    position: absolute;
+    top: 45%;
+    right: 10px;
+    background-color: transparent;
+}
+
+#next img,
+#prev img {
+    width: 30px;
+}
+
+#prev {
+    position: absolute;
+    top: 45%;
+    left: 10px;
+    width: 30px;
+    background-color: #9B59B6;
+}

@@ -9,7 +9,7 @@ module.exports = {
     },
     updateUserInfo: (req,res) => {
         req.app.get("db").users.update_picture([req.session.user.id, req.body.picture]).then(() => {
-            res.sendStatus(200);
+            res.status(200);
         }).catch(err => {
             res.status(500).send(err);
             console.log(err);
@@ -17,7 +17,7 @@ module.exports = {
     },
     updateParentInfo: (req,res) => {
         req.app.get("db").users.update_parent_info([req.session.user.id,req.body.status,req.body.childCare, req.body.subscriptions]).then(() => {
-            res.sendStatus(200);
+            res.status(200);
         }).catch(err => {
             res.status(500).send(err);
             console.log(err);

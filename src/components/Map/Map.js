@@ -49,7 +49,7 @@ export default class Map extends Component {
 
     async getCoords(address) {
 		return new Promise((resolve, reject) => {
-			axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${address}?key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}`)
+			axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}`)
 				.then(response => {
 					return resolve({
 						lat: response.data.results[0].geometry.location.lat,
