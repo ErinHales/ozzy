@@ -31,8 +31,35 @@
     width: 20px;
 }
 
+.moreInfoButton {
+    font-size: 12px;
+    padding: 5px;
+    float: right;
+    margin-right: 7px;
+    margin-top: 15px;
+}
+
 .careProviderInfo h3,
 .careProviderInfo h4 {
     padding: 0px;
     margin: 0px;
 }
+
+.viewCareProvider {
+    width: 100%;
+    background-color: #BDC3C7;
+    margin-bottom: 3%;
+}
+
+.viewCareProvider .careProviderProfile {
+    width: 94%;
+    margin: 3%;
+}
+
+.careProviderInfoContainer {
+    background-color: white;
+    padding: 10px;
+    margin: 3%;
+    margin-top: 0px;
+}
+

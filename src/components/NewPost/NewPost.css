@@ -45,9 +45,9 @@ body {
     height: 55px;
 }
 
-.postImg:hover {
+/* .postImg:hover {
     -webkit-filter:  grayscale(20%) brightness(85%);
-}
+} */
 
 .newPostHeader {
     display: flex;
