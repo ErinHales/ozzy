@@ -17,6 +17,7 @@ export default class Edit extends Component {
         })
         return (
             <div className="profileSettings">
+                {/* styling for all overlayContainers is in NewPost.css */}
                 <Dropzone onDrop={this.props.onDrop} multiple={false} className="profilePicture">
                     <div className="overlayContainer">
                         <img src={this.props.profileURL} alt="upload" className="profilePicture postImg" />

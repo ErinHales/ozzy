@@ -5,6 +5,7 @@ import Default from './Default.js';
 import './Profile.css';
 
 export default class Profile extends Component {
+    // all of the data and functions for the profile page are stored here and passed down to the default and edit components
     constructor() {
         super();
 
@@ -65,6 +66,7 @@ export default class Profile extends Component {
     }
 
     onDrop = files => {
+        // Basically the same onDrop function as in NewPost.js
         // Push all the axios request promise into a single array
         let { REACT_APP_UPLOAD_PRESET, CLOUDINARY_API_KEY, REACT_APP_CLOUD_NAME } = process.env;
         const uploaders = files.map(file => {

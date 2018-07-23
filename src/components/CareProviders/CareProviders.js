@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import axios from "axios";
 import "./CareProviders.css";
 
 export default class CareProvider extends Component {
@@ -7,24 +6,11 @@ export default class CareProvider extends Component {
         super();
 
         this.state = {
-            lat: 0,
-            lng: 0,
             rating: []
         }
     }
 
-    componentDidMount() {
-            var address = "1491 W 1700 N, Provo, UT 84604, USA";
-
-            axios.get(`http://maps.googleapis.com/maps/api/geocode/json?address=${address}`).then(response => {
-                this.setState({
-                    lat: response.data.results[0].geometry.location.lat,
-                    lng: response.data.results[0].geometry.location.lng
-                })
-            })
-                // console.log(response.data.results[0].geometry.location.lat);
-    }
-
+    // renders each individual care provider and their information as it is passed down from a forEach function in Map.js
     render() {
         return (
             <div className="careProvider">

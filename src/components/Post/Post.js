@@ -20,6 +20,7 @@ export default class Post extends Component {
     }
 
     componentDidMount() {
+        // We have to handle whether a post has been liked or not here. This has to happen in each individual post because we need to fetch data as to what our individual user has liked or not.
         axios.get(`/api/liked/${this.props.data.id}`).then(response => {
             if (response.data[0]) {
                 this.setState({
@@ -32,6 +33,7 @@ export default class Post extends Component {
     }
 
     likeNewPost(like, love) {
+        // If a post has not been liked by a certain user before, this creates a new instance in the database which saves whether a certain post is liked or loved and reflects that change in state
         axios.post(`/api/newlike/${this.props.data.id}`, { liked: like, loved: love }).then(response => {
             this.setState({
                 likedPost: response.data[0],
@@ -43,6 +45,7 @@ export default class Post extends Component {
 
 
     like() {
+        // if user has already liked or loved a post and decides to update that, this simply updates the existing record in the database
         if (this.state.likedPost.postid) {
             axios.put(`/api/like/${this.props.data.id}`, { liked: !this.state.liked }).then(res => {
                 this.setState({
@@ -55,6 +58,7 @@ export default class Post extends Component {
     }
 
     love() {
+        // if user has already liked or loved a post and decides to update that, this simply updates the existing record in the database
         if (this.state.likedPost.postid) {
             axios.put(`/api/love/${this.props.data.id}`, { loved: !this.state.loved }).then(res => {
                 this.setState({
@@ -67,6 +71,7 @@ export default class Post extends Component {
     }
 
     getComments(show) {
+        // gets comments for a specific post and displays them
         axios.get(`/api/comments/${this.props.data.id}`).then(response =>{
             this.setState({
                 comments: response.data,
@@ -82,6 +87,7 @@ export default class Post extends Component {
     }
 
     comment() {
+        // creates a new comment and resets the input
         axios.post(`/api/comment/${this.props.data.id}`, {text: this.state.input}).then(response => {
             this.getComments(true);
             this.setState({
@@ -94,7 +100,6 @@ export default class Post extends Component {
 
     render() {
         let { colors, feeds } = this.state;
-        console.log(this.props.data.image);
         let { date, status, post, first_name, last_name, picture, image } = this.props.data;
         let commentArr = [];
         if(this.state.comments[0]) {
@@ -134,6 +139,7 @@ export default class Post extends Component {
                     <img src="http://i68.tinypic.com/3130vwh.jpg" alt="" onClick={() => this.getComments(!this.state.showComments)}/>
                     <img src="http://i68.tinypic.com/15cofhi.jpg" alt="" />
                 </div>
+                {/* if this.state.showComments is true, it will display comments and input box for making a new comment */}
         {this.state.showComments ? <input type="text" placeholder="comment" value={this.state.input} onChange={(e) => this.updateCommentInput(e)} onKeyUp={event => (event.key === "Enter" && this.state.input !== "") ? this.comment() : null} /> : null}
         {this.state.showComments ? <button onClick={() => (this.state.input !== "") ? this.comment() : null}>submit</button> : null}
                 {this.state.showComments ? commentArr : null}

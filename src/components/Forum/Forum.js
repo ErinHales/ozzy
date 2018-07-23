@@ -22,12 +22,14 @@ export default class Forum extends Component {
     }
 
     render() {
+        // maps over all posts and returns a post component for each
         let postsArr = [];
         this.state.posts.forEach((post,i) => {
             postsArr.push(<Post key={i} data={post} />)
         })
         return (
             <div className="forumPage">
+                {/* postsArr displays all of the post components */}
                 {postsArr}
                 <Link to="/new" className="pencilButton"><img src="http://i66.tinypic.com/30ix6bm.jpg" alt=""/></Link>
             </div>

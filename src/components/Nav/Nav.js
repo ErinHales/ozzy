@@ -22,6 +22,7 @@ export default class Nav extends Component {
     }
 
     toggleMenu() {
+        // will disable menu if you are in the getstarted phase when you first create and account
         if (window.location.hash !== "#/getstarted") {
             this.setState({
                 menu: !this.state.menu
@@ -30,11 +31,13 @@ export default class Nav extends Component {
     }
 
     render() {
+        // will not display navigation bar or menu before user has logged in
         if (window.location.hash === "#/") {
             return <div></div>;
         } else {
             return (
                 <div>
+                    {/* click anywhere on the nav bar to see the slideDown menu */}
                     <div className="nav" onClick={() => this.toggleMenu()}>
                         <h1>Ozzy</h1>
                         <img src={this.state.userPhoto} alt="" />

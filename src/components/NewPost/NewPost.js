@@ -50,17 +50,18 @@ export default class NewPost extends Component {
     }
 
     onDrop = files => {
+        // This takes the file that is uploaded from react-dropzone and immediately uploads it onto Cloudinary. Cloudinary returns a public id and url for the image that can be used in website layouts
         // Push all the axios request promise into a single array
         let {REACT_APP_UPLOAD_PRESET, CLOUDINARY_API_KEY, REACT_APP_CLOUD_NAME} = process.env;
         const uploaders = files.map(file => {
-          // Initial FormData
+          // Information must be in form data, that's the way Cloudinary wants it
           const formData = new FormData();
           formData.append("file", file);
           formData.append("upload_preset", REACT_APP_UPLOAD_PRESET); // Replace the preset name with your own
           formData.append("api_key", CLOUDINARY_API_KEY); // Replace API key with your own Cloudinary key
           formData.append("timestamp", (Date.now() / 1000) | 0);
           
-          // Make an AJAX upload request using Axios (replace Cloudinary URL below with your own)
+          // Make an AJAX upload request using Axios, pass in formData
           return axios.post(`https://api.cloudinary.com/v1_1/${REACT_APP_CLOUD_NAME}/image/upload`, formData, {
             headers: { "X-Requested-With": "XMLHttpRequest" },
           }).then(response => {
@@ -71,7 +72,6 @@ export default class NewPost extends Component {
                 publicId: data.public_id,
                 url: fileURL
             })
-            console.log(data);
           })
         });
         axios.all(uploaders).then(() => {
@@ -101,13 +101,13 @@ export default class NewPost extends Component {
                     </div>
                     <div>
                         <textarea type="text" placeholder="type here" className="postText" onChange={(e) => this.updatePost(e)}></textarea>
-                        {this.state.image ? <Dropzone onDrop={this.onDrop} className='dropzone'  multiple={false}>
-                        <div className="overlayContainer">
-                            <img src={this.state.url ? this.state.url : "http://i67.tinypic.com/29w7a83.jpg"} alt="upload" className="postImg"/>
-                            <div className="middle">
-                                <div className="text">Drag or click to select photo</div>
+                        {this.state.image ? <Dropzone onDrop={this.onDrop} className='dropzone'  multiple=  {false}>
+                            <div className="overlayContainer">
+                                <img src={this.state.url ? this.state.url : "http://i67.tinypic.com/29w7a83.jpg"} alt="upload" className="postImg"/>
+                                <div className="middle">
+                                    <div className="text">Drag or click to select photo</div>
+                                </div>
                             </div>
-                        </div>
                         </Dropzone> : null}
                         <div className="anonymousBox">
                             <input type="checkbox" />

@@ -2,7 +2,9 @@ import React from 'react';
 import { Image } from 'cloudinary-react';
 
 export default function Default(props) {
-    //needs profileURL, status, subscribedNewsFeeds, seekingChildCare, displayFamily
+    // this is the view that displays all of the users profile information. User cannot edit information from here
+
+    // loops through family array and returns a component for each family member
     let displayFamily = [];
     props.family.forEach((person, i) => {
         return displayFamily.push(

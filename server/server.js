@@ -39,6 +39,8 @@ massive(CONNECTION_STRING).then(function(db) {
     console.log(err);
 })
 
+
+// Auth0 authentication code
 app.get('/auth/callback', (req, res) => {
     let {REACT_APP_CLIENT_ID, REACT_APP_CLIENT_SECRET} = process.env;
   
@@ -82,9 +84,6 @@ app.get('/auth/callback', (req, res) => {
     .then(accessToken => tradeAccessTokenForUserInfo(accessToken))
     .then(userInfo => storeUserInfoInDataBase(userInfo));
     })
-    
-  
-//Cloudinary
 
 
 

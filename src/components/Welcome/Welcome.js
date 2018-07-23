@@ -4,6 +4,8 @@ import "./Welcome.css";
 
 export default class Welcome extends Component {
 
+    // home page.  Get started button will take you to auth0 login.  If it is the user's first time logging in, it will take them to the get started questions.  If not it will redirect them to the forum.
+
     login() {
         let {REACT_APP_DOMAIN, REACT_APP_CLIENT_ID} = process.env;
         let redirectUri = encodeURIComponent("http://localhost:4000/auth/callback");

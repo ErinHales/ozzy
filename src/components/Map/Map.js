@@ -23,14 +23,14 @@ export default class Map extends Component {
     }
 
     componentDidMount() {
+        // gets users location as soon as they navigate to this component, redirects the map to focus on the user's location
         let getLocation = () => {
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(showPosition);
-            } else {
-                // x.innerHTML = "Geolocation is not supported by this browser.";
             }
         }
         let showPosition = (position) => {
+            // this.state.center is the center of where the map will focus
             this.setState({
                 center: {
                     lat: position.coords.latitude,
@@ -48,6 +48,8 @@ export default class Map extends Component {
     }
 
     async getCoords(address) {
+        //important to return promise here. If there is no promise, it does not have time to resolve response.data.results[0] before returning the lat and lng
+        // This function gets the lat and lng from each address and passes those into the map item components
 		return new Promise((resolve, reject) => {
 			axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}`)
 				.then(response => {
@@ -60,17 +62,20 @@ export default class Map extends Component {
     }
 
     render() {
+        // For each address, returns a component with the care provider's information
         let usersArr = [];
         this.state.addresses.forEach(user => {
             return usersArr.push(<CareProvider userInfo={user} />)
         })
 
+        // For each address, returns a mapItem component in google map the location of the care provider's address.
+        // Requires latitude and longitude as props
         let mapArr = []
         this.state.addresses.forEach(user => {
-            let {address_1, city, state, zip} = user;
+            let {care_provider_id, address_1, city, state, zip} = user;
             let address = `${address_1}, ${city}, ${state} ${zip}, USA`;
             this.getCoords(address).then(response => {
-                mapArr.push(<MapItem lat={response.lat} lng={response.lng} />)
+                mapArr.push(<MapItem lat={response.lat} lng={response.lng} key={care_provider_id} />)
             })
         })
 
