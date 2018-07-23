@@ -135,6 +135,25 @@ export default class Profile extends Component {
         })
     }
 
+    cancel = () => {
+        axios.get('/api/getuserinfo').then(response => {
+            // response.data also returns id, first_name, last_name
+            let { picture, seeking_childcare, status, newsfeed } = response.data[0];
+            let familyMembers = [];
+            response.data.forEach((person, i) => {
+                familyMembers.push({ name: person.name, image: person.image, relationship: person.relationship, id: person.family_id });
+            })
+            this.setState({
+                profileURL: picture,
+                status: status,
+                subscribedNewsFeeds: newsfeed,
+                seekingChildCare: seeking_childcare,
+                family: familyMembers,
+                edit: false
+            })
+        })
+    }
+
     render() {
         const { edit, profileURL, status, subscribedNewsFeeds, seekingChildCare, family } = this.state;
         return (
@@ -146,7 +165,7 @@ export default class Profile extends Component {
                         this.toggleEdit();
                     }
                     }>Save Changes</button> : <button className="editProfileButton" onClick={() => this.toggleEdit()}>Edit Profile</button>}
-                    {edit ? <button className="cancelButton" onClick={() => this.toggleEdit()}>Cancel</button> : null}
+                    {edit ? <button className="cancelButton" onClick={() => this.cancel()}>Cancel</button> : null}
                 </div>
             </div>
         )

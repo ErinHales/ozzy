@@ -102,7 +102,13 @@ export default class NewPost extends Component {
                     <div>
                         <textarea type="text" placeholder="type here" className="postText" onChange={(e) => this.updatePost(e)}></textarea>
                         {this.state.image ? <Dropzone onDrop={this.onDrop} className='dropzone'  multiple={false}>
-                        <img src={this.state.url ? this.state.url : "http://i67.tinypic.com/29w7a83.jpg"} alt="upload" className="postImg"/></Dropzone> : null}
+                        <div className="overlayContainer">
+                            <img src={this.state.url ? this.state.url : "http://i67.tinypic.com/29w7a83.jpg"} alt="upload" className="postImg"/>
+                            <div className="middle">
+                                <div className="text">Drag or click to select photo</div>
+                            </div>
+                        </div>
+                        </Dropzone> : null}
                         <div className="anonymousBox">
                             <input type="checkbox" />
                             <h3>Ask Anonymously</h3>
@@ -113,7 +119,7 @@ export default class NewPost extends Component {
                         </div>
                     </div>
                 </div>
-                <Link to="/forum">
+                <Link to="/forum" className="link">
                     <div className="backButtonContainer">
                         <button>Back to Forum</button>
                     </div>

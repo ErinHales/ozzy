@@ -20,11 +20,13 @@ export default class Nav extends Component {
             })
         })
     }
-    
+
     toggleMenu() {
-        this.setState({
-            menu: !this.state.menu
-        })
+        if (window.location.hash !== "#/getstarted") {
+            this.setState({
+                menu: !this.state.menu
+            })
+        }
     }
 
     render() {
@@ -40,24 +42,24 @@ export default class Nav extends Component {
                     <div className={this.state.menu ? "menuOn" : "menuOff"}>
                         <div className="menuLinks">
                             <div className="menuItem">
-                                <img src="http://i68.tinypic.com/289a80g.jpg" alt="Forum"/>
-                                <Link className="link" to="/forum" onClick={() => this.toggleMenu()}>Forum</Link><br/>
+                                <img src="http://i68.tinypic.com/289a80g.jpg" alt="Forum" />
+                                <Link className="link" to="/forum" onClick={() => this.toggleMenu()}>Forum</Link><br />
                             </div>
                             <div className="menuItem">
-                                <img src="http://i68.tinypic.com/3130vwh.jpg" alt="new post"/>
-                                <Link className="link" to="/new" onClick={() => this.toggleMenu()}>Create Post</Link><br/>
+                                <img src="http://i68.tinypic.com/3130vwh.jpg" alt="new post" />
+                                <Link className="link" to="/new" onClick={() => this.toggleMenu()}>Create Post</Link><br />
                             </div>
                             <div className="menuItem">
-                                <img src="http://i63.tinypic.com/2yl6zci.jpg" alt="profile"/>
+                                <img src="http://i63.tinypic.com/2yl6zci.jpg" alt="profile" />
                                 <Link className="link" to="/profile" onClick={() => this.toggleMenu()}>Profile</Link>
                             </div>
                             <div className="menuItem">
-                                <img src="http://i68.tinypic.com/xfz446.jpg" alt=""/>
+                                <img src="http://i68.tinypic.com/xfz446.jpg" alt="" />
                                 <Link className="link" to="/find" onClick={() => this.toggleMenu()}>Find Child Care</Link>
                             </div>
                             <div className="menuItem">
-                                <img src="http://i63.tinypic.com/35jcg04.jpg" alt=""/>
-                                <Link className="link" to="/" onClick={() => this.toggleMenu()}>Logout</Link><br/>
+                                <img src="http://i63.tinypic.com/35jcg04.jpg" alt="" />
+                                <Link className="link" to="/" onClick={() => this.toggleMenu()}>Logout</Link><br />
                             </div>
                         </div>
                     </div>

@@ -7,7 +7,7 @@ import './Profile.css';
 export default class Edit extends Component {
 
     render() {
-        let newsfeedArr = this.props.newsfeed.split(", ").map((item,i) => {
+        let newsfeedArr = this.props.newsfeed.split(", ").map((item, i) => {
             return <button className="editButton" key={i} onClick={() => this.props.deleteSubscription(item)}>{item}<img src="http://i68.tinypic.com/23wwjnc.jpg" alt="delete" /></button>
         });
         let displayFamily = [];
@@ -18,7 +18,12 @@ export default class Edit extends Component {
         return (
             <div className="profileSettings">
                 <Dropzone onDrop={this.props.onDrop} multiple={false} className="profilePicture">
-                    <img src={this.props.profileURL} alt="upload" className="profilePicture" />
+                    <div className="overlayContainer">
+                        <img src={this.props.profileURL} alt="upload" className="profilePicture postImg" />
+                        <div className="middle">
+                            <div className="text">Drag or click to select photo</div>
+                        </div>
+                    </div>
                 </Dropzone>
                 <div className="profileContainer">
                     <h3>Status: {this.props.status}</h3>

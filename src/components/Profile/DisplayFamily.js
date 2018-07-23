@@ -1,11 +1,11 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import Dropzone from 'react-dropzone';
 import axios from 'axios';
 
 export default class DisplayFamily extends Component {
     constructor() {
         super();
-        
+
         this.state = {
             familyPic: "",
             newImg: ""
@@ -20,8 +20,8 @@ export default class DisplayFamily extends Component {
     }
 
     componentDidUpdate(prevProps, prevState) {
-        if(prevState.familyPic !== this.state.familyPic) {
-            axios.put(`/api/familypic`, {id: this.props.person.id, url: this.state.familyPic}).then(res => {
+        if (prevState.familyPic !== this.state.familyPic) {
+            axios.put(`/api/familypic`, { id: this.props.person.id, url: this.state.familyPic }).then(res => {
                 console.log(`Family member ${this.props.person.id} has a new picture!`);
             })
         }
@@ -56,14 +56,19 @@ export default class DisplayFamily extends Component {
         console.log(this.props.person.id);
         return (
             <div className="familyMember">
-                  <Dropzone onDrop={this.onDrop} multiple={false} className="dropzone">
+                <Dropzone onDrop={this.onDrop} multiple={false} className="dropzone">
+                    <div className="overlayContainer">
                         <img src={this.state.familyPic} alt="family" />
-                    </Dropzone>
-                    <div>
-                        <input placeholder={this.props.person.name} type="text" onChange={(e) => this.props.updateName(e)} />
-                        <input placeholder={this.props.person.relationship} type="text" onChange={(e) => this.props.updateRelationship(e)} />
+                        <div className="middle">
+                            <div className="text" style={{fontSize: "12px", padding: "10px"}}>Drag or click to select photo</div>
+                        </div>
                     </div>
+                </Dropzone>
+                <div>
+                    <input placeholder={this.props.person.name} type="text" onChange={(e) => this.props.updateName(e)} />
+                    <input placeholder={this.props.person.relationship} type="text" onChange={(e) => this.props.updateRelationship(e)} />
                 </div>
+            </div>
         )
     }
 }
