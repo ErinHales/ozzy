@@ -11,3 +11,11 @@
     bottom: 120px;
     z-index: -1;
 }
+
+.sendMessage {
+    background-color: transparent;
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+    width: 40px;
+}

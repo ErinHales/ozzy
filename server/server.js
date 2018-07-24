@@ -25,7 +25,13 @@ const messageControllers = require('./controllers/message-controllers.js');
 
 io.on("connection", socket => {
   console.log("New client connected");
+  console.log(socket.id);
 //   socket.on("message", app.get("db").someFunction()
+  socket.on("send", async function(data) {
+    let db = app.get("db")
+    // conversation_id, care_provider_id, date, message, messager_id, messager
+    await db.messages.create_message([data.conversation_id, data.care_provider_id, data.date, data.message,  data.user_id, "User"]).catch(err => console.log(err));
+  })
   socket.on("disconnect", () => console.log("Client disconnected"));
 });
 // app.use(authMiddleware.bypassAuthInDevelopment);
@@ -128,6 +134,7 @@ app.get('/api/addresses', careControllers.getAddresses);
 app.get('/api/thread/:id', messageControllers.getConvo);
 app.get('/api/messages', messageControllers.getMessages);
 app.post('/api/newconvo', messageControllers.newConvo);
+app.post('/api/newmessage', messageControllers.newMessage);
 
 
 
