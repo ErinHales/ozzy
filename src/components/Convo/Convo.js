@@ -33,14 +33,8 @@ export default class Convo extends Component {
     }
 
     newConversation = () => {
-        let unique = true;
-        for (var i = 0; i < this.state.thread.length; i++) {
-            if (this.state.thread.care_provider === this.props.id) {
-                return unique = false;
-            }
-        }
-        if (unique === true) {
-            axios.post("/api/newconvo", {id: this.props.match.params.id}).then(() => {
+        if (this.state.thread.length === 0) {
+            axios.post("/api/newconvo", { id: this.props.match.params.id }).then(() => {
                 console.log("New conversation created!")
             })
         }

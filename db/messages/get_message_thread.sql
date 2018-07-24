@@ -1,3 +1,3 @@
 SELECT * FROM Messages
-WHERE conversation_id = $1
+WHERE user_id = $1
 ORDER BY id;
