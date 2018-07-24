@@ -1,0 +1,18 @@
+.messageThread {
+    background-color: white;
+    margin: 10px;
+    padding: 10px;
+    padding-top: 5px;
+    border-radius: 5px;
+}
+
+.messageThread img {
+    width: 100px;
+}
+
+.messageLink {
+    color: black;
+    text-decoration: none;
+    font-family: "Roboto", sans-serif;
+    font-weight: bold;
+}

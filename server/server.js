@@ -4,18 +4,30 @@ const massive = require('massive');
 const session = require('express-session');
 const axios = require('axios');
 const cloudinary = require('cloudinary');
+const http = require("http");
+const socket = require('socket.io');
 require('dotenv').config();
+
+const app = express();
+app.use(bodyParser.json());
+
+const server = http.createServer(app);
+const io = socket(server);
 
 // controllers
 const authControllers = require('./controllers/auth-controllers');
 const postControllers = require('./controllers/post-controllers');
 const userControllers = require('./controllers/users-controllers');
 const careControllers = require('./controllers/care-controllers');
+const messageControllers = require('./controllers/message-controllers.js');
 // const authMiddleware = require('./authMiddleware/authMiddleware');
 
-const app = express();
 
-app.use(bodyParser.json());
+io.on("connection", socket => {
+  console.log("New client connected");
+//   socket.on("message", app.get("db").someFunction()
+  socket.on("disconnect", () => console.log("Client disconnected"));
+});
 // app.use(authMiddleware.bypassAuthInDevelopment);
 
 const {SERVER_PORT, CONNECTION_STRING, SESSION_SECRET} = process.env;
@@ -112,9 +124,14 @@ app.put('/api/familypic', userControllers.updateFamilyMemberPic);
 // care providers 
 app.get('/api/addresses', careControllers.getAddresses);
 
+// messages
+app.get('/api/thread/:id', messageControllers.getConvo);
+app.get('/api/messages', messageControllers.getMessages);
+app.post('/api/newconvo', messageControllers.newConvo);
 
 
 
-app.listen(SERVER_PORT, () => {
+
+server.listen(SERVER_PORT, () => {
     console.log(`Server is listening on port: ${SERVER_PORT}`);
 })

@@ -7,6 +7,8 @@ import NewPost from './components/NewPost/NewPost';
 import Profile from './components/Profile/Profile';
 import Map from './components/Map/Map';
 import Questions from './components/Questions/Questions';
+import Convo from './components/Convo/Convo';
+import Messages from './components/Messages/Messages';
 import './App.css';
 
 class App extends Component {
@@ -22,6 +24,8 @@ class App extends Component {
             <Route path="/profile" component={Profile} />
             <Route path="/find" component={Map} />
             <Route path="/getstarted" component={Questions} />
+            <Route path="/messages" component={Messages} />
+            <Route path="/message/:id" component={Convo} />
           </Switch>
         </div>
       </HashRouter>

@@ -1,0 +1,13 @@
+.messagesContainer textarea {
+    width: 94%;
+    height: 100px;
+    margin: 2%;
+    position: fixed;
+    bottom: 0;
+}
+
+.messagesContainer > div {
+    position: absolute;
+    bottom: 120px;
+    z-index: -1;
+}

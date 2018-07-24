@@ -53,8 +53,6 @@ export default class Map extends Component {
         // For each item in this.state.careProviderInfo, it takes the address and returns a mapItem component in google map the location of the care provider's address.
         // Requires latitude and longitude as props
         if (prevState.careProviderInfo !== this.state.careProviderInfo || prevState.selectedCareProvider !== this.state.selectedCareProvider) {
-            let lat;
-            let lng;
             let mapArr = [];
             this.state.careProviderInfo.forEach(user => {
                 let { care_provider_id, address_1, city, state, zip } = user;

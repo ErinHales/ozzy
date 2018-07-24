@@ -8,14 +8,14 @@ module.exports = {
     },
     checkLoggedIn: (req, res, next) => {
         if (req.session.user) {
-          next();
+            next();
         } else {
-          res.status(403).json({ message: 'Unauthorized' });
+            res.status(403).json({ message: 'Unauthorized' });
         }
     },
     secureUserData: (req, res) => {
-        res.json({ 
-            name: req.session.user.name, 
+        res.json({
+            name: req.session.user.name,
             picture: req.session.user.picture
         });
     }

@@ -1,0 +1,28 @@
+.userMessage {
+    width: 100vw;
+    min-height: 50px;
+}
+
+.userMessage p {
+    background-color: #9B59B6;
+    max-width: 60%;
+    display: inline-block;
+    border-radius: 5px;
+    padding: 10px;
+    float: right;
+    margin: 10px;
+}
+
+.careProviderMessage {
+    width: 100vw;
+    min-height: 60px;
+}
+
+.careProviderMessage p {
+    max-width: 60%;
+    padding: 10px;
+    border-radius: 5px;
+    display: inline-block;
+    text-align: left;
+    margin: 10px;
+}

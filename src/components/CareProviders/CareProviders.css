@@ -63,3 +63,39 @@
     margin-top: 0px;
 }
 
+
+.messageButton img {
+    position: absolute;
+    height: 20px;
+    margin: 5px;
+    margin-bottom: 0px;
+    left: 10px;
+    bottom: 17px;
+}
+
+.messageButton {
+    padding: 10px;
+    border-radius: 25px;
+    position: absolute;
+    top: calc(52% + 80px);
+    left: 5%;
+    width: 53px;
+    height: 53px;
+    background-color: #9B59B6;
+    transition: width 0.5s ease-in-out;
+    overflow: hidden;
+}
+
+.messageButton:hover {
+    width: 170px;
+}
+
+.messageContainer h2 {
+    position: absolute;
+    padding: 0px;
+    margin: 0px;
+    left: 55px;
+    top: 15px;
+    font-size: 20px;
+    color: black;
+}
