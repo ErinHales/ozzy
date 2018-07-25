@@ -19,3 +19,8 @@
     right: 15px;
     width: 40px;
 }
+
+.messagesContainer > div {
+    overflow-y: scroll;
+    height: calc(100vh - 200px);
+}

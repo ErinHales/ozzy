@@ -6,15 +6,19 @@ export default class Message extends Component {
         if (this.props.messageData.messager === "User") {
             return (
                 <div className="userMessage">
-                    {/* <h5>{this.props.messageData.date}</h5> */}
-                    <p>{this.props.messageData.message}</p>
+                    <div>
+                        <p>{this.props.messageData.message}</p>
+                        <h5>{this.props.messageData.date}</h5>
+                    </div>
                 </div>
             )
         } else {
             return (
                 <div className="careProviderMessage">
-                    {/* <h5>{this.props.messageData.date}</h5> */}
-                    <p style={{ backgroundColor: this.props.messageData.color }}>{this.props.messageData.message}</p>
+                    <div style={{ backgroundColor: this.props.messageData.color }}>
+                        <p>{this.props.messageData.message}</p>
+                        <h5>{this.props.messageData.date}</h5>
+                    </div>
                 </div>
             )
         }

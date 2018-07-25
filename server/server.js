@@ -95,7 +95,7 @@ app.get('/auth/callback', (req, res) => {
         }
       })   
     }
-     
+
     //Final Code, Uncomment after completeing steps 1-4 above
     
     tradeCodeForAccessToken()

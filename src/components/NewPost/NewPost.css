@@ -82,7 +82,7 @@ body {
     transition: .5s ease;
     backface-visibility: hidden;
 }
-  
+
 .overlayContainer .middle {
     transition: .5s ease;
     opacity: 0;
@@ -97,11 +97,11 @@ body {
 .overlayContainer:hover img {
     opacity: 0.3;
 }
-  
+
 .overlayContainer:hover .middle {
     opacity: 1;
 }
-  
+
 .overlayContainer .text {
     background-color: #9B59B6;
     color: white;

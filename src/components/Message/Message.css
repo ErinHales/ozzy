@@ -1,9 +1,9 @@
 .userMessage {
     width: 100vw;
-    min-height: 50px;
+    min-height: 60px;
 }
 
-.userMessage p {
+.userMessage > div {
     background-color: #9B59B6;
     max-width: 60%;
     display: inline-block;
@@ -13,16 +13,30 @@
     margin: 10px;
 }
 
+.userMessage p,
+.userMessage h5,
+.careProviderMessage p, 
+.careProviderMessage h5 {
+    padding: 0px;
+    margin: 0px;
+}
+
 .careProviderMessage {
     width: 100vw;
     min-height: 60px;
 }
 
-.careProviderMessage p {
+.careProviderMessage > div {
     max-width: 60%;
-    padding: 10px;
     border-radius: 5px;
     display: inline-block;
     text-align: left;
     margin: 10px;
+    padding: 10px;
+}
+
+.userMessage h5,
+.careProviderMessage h5 {
+    font-size: 10px;
+    padding-top: 5px;
 }

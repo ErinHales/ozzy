@@ -10,9 +10,26 @@ export default class Convo extends Component {
     constructor() {
         super();
 
+        const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+        var d = new Date();
+        var month = d.getMonth();
+        var date = d.getDate();
+        var time = "AM";
+        var hour = d.getHours();
+        if(hour > 12) {
+            hour -= 12;
+            time = "PM";
+        }
+        var minutes = d.getMinutes();
+        if(minutes < 10) {
+            minutes = `0${minutes}`;
+        }
+        let messageDate = `${hour}:${minutes} ${time} ${months[month]} ${date}, 2018`;
+
         this.state = {
             message: "",
-            thread: []
+            thread: [],
+            date: messageDate
         }
         // this.socket = socketIOClient("http://localhost:4000");
         
@@ -43,38 +60,38 @@ export default class Convo extends Component {
         }
     }
 
-    // createMessage = () => {
-    //     let { care_provider_id, color, conversation_id } = this.state.thread;
-    //     axios.post('/api/newmessage', {conversation_id: conversation_id, user_id: care_provider_id, color: color, date: 'some date', message: this.state.message}).then(response => {
-    //         this.setState({
-    //             thread: response.data
-    //         })
-    //     })
-    // }
-
     sendMessage = () => {
         // conversation_id, care_provider_id, date, message, messager_id, messager
         let { care_provider_id, conversation_id, user_id } = this.state.thread[0];
-        socket.emit("send", {conversation_id: conversation_id, care_provider_id: care_provider_id, date: 'some date', message: this.state.message, user_id: user_id});
+        socket.emit("send", {conversation_id: conversation_id, care_provider_id: care_provider_id, date: this.state.date, message: this.state.message, user_id: user_id});
+    }
+    
+    updateThread = () => {
+        axios.get(`/api/thread/${this.props.match.params.id}`).then(response => {
+            this.setState({
+                thread: response.data,
+                message: ""
+            })
+        })
     }
 
     render() {
         let messageArr = [];
-        console.log(this.state.thread);
         this.state.thread.forEach(message => {
-            console.log(message);
             messageArr.push(<Message messageData={message} />);
         })
         return (
             <div className="messagesContainer">
-                <div>
+                <div className="displayMessagesContainer">
                     {messageArr}
                 </div>
-                <textarea type="text" placeholder="type here" onChange={(e) => this.handleChange(e)}></textarea>
+                <textarea type="text" placeholder="type here" value={this.state.message} onChange={(e) => this.handleChange(e)}></textarea>
                 <img src="http://i64.tinypic.com/jzwkuh.jpg" alt="send" className="sendMessage" onClick={() => {
                     this.newConversation();
-                    this.sendMessage();
-                    // this.createMessage();
+                    if(this.state.message !== "") {
+                        this.sendMessage();
+                        this.updateThread();
+                    }
                 }} />
             </div>
         )
