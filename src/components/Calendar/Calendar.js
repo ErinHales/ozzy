@@ -1,10 +1,11 @@
-import React, { Component } from 'react'
-import BigCalendar from 'react-big-calendar'
-import moment from 'moment'
+import React, { Component } from 'react';
+import BigCalendar from 'react-big-calendar';
+import moment from 'moment';
+import './Calendar.css';
 
-import GoogleCalendar from '../../utils/GoogleCalendar'
+import GoogleCalendar from '../../utils/GoogleCalendar';
 
-import 'react-big-calendar/lib/css/react-big-calendar.css'
+import 'react-big-calendar/lib/css/react-big-calendar.css';
 // import styles from './Home.scss'
 
 // use Moment.js to localize react-big-calendar
@@ -12,8 +13,8 @@ BigCalendar.momentLocalizer(moment)
 
 const calendars = [
     {
-        name: 'demo',
-        url: 'srg23q1tm95o05u36lec0ilkt4@group.calendar.google.com'
+        name: 'Erin McBride',
+        url: 'mcbridee093@gmail.com'
     }
 ]
 const dailyRecurrence = 700
@@ -58,14 +59,11 @@ export default class Calendar extends Component {
             .catch(err => { throw new Error(err) })
     }
 
-    render = () =>
-        <div>
-            {/* <div className={styles['title']}>React Google Calendar</div> */}
-            <div>React Google Calendar</div>
-            {/* <div className={styles['calendar-container']}> */}
-            <div>
+    render() {
+        return (
+            <div className="calendar-container">
                 <BigCalendar events={this.state.events} />
             </div>
-        </div>
-
+        )
+    }
 }

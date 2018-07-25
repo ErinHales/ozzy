@@ -4,8 +4,6 @@ import moment from 'moment'
 
 import { handleDaily, handleDateOfMonth, handleDayOfMonth, handleWeekly } from './Algorithms'
 
-let {REACT_APP_GOOGLE_CALENDAR_API} = process.env;
-
 export default {
 
     getAllCalendars: (
@@ -15,6 +13,7 @@ export default {
         weeklyRecurrence,
         monthlyRecurrence
     ) => Promise.map(calendars, (calendar) => {
+        console.log(calendar);
         return axios.get(`https://content.googleapis.com/calendar/v3/calendars/${calendar.url}/events?key=${GOOGLE_CALENDAR_API}`)
             .then(res => {
                 const items = res.data.items.filter(item => item.status !== "cancelled")

@@ -1,0 +1,11 @@
+
+.calendar-container {
+    padding: 20px;
+    height: 90vh;
+    background-color: white;
+}
+
+.rbc-event-content {
+    font-size: 10px;
+    margin: 0px;
+}
