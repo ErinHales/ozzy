@@ -53,16 +53,20 @@ export default class Nav extends Component {
                                 <Link className="link" to="/new" onClick={() => this.toggleMenu()}>Create Post</Link><br />
                             </div>
                             <div className="menuItem">
-                                <img src="http://i63.tinypic.com/2yl6zci.jpg" alt="profile" />
-                                <Link className="link" to="/profile" onClick={() => this.toggleMenu()}>Profile</Link>
-                            </div>
-                            <div className="menuItem">
                                 <img src="http://i68.tinypic.com/xfz446.jpg" alt="" />
                                 <Link className="link" to="/find" onClick={() => this.toggleMenu()}>Find Child Care</Link>
                             </div>
                             <div className="menuItem">
                                 <img src="http://i67.tinypic.com/fvg4t5.jpg" alt="" />
                                 <Link className="link" to="/messages" onClick={() => this.toggleMenu()}>Messages</Link><br />
+                            </div>
+                            <div className="menuItem">
+                                <img src="http://i67.tinypic.com/2cdfneu.jpg" alt="" />
+                                <Link className="link" to="/calendar" onClick={() => this.toggleMenu()}>Calendar</Link><br />
+                            </div>
+                            <div className="menuItem">
+                                <img src="http://i63.tinypic.com/2yl6zci.jpg" alt="profile" />
+                                <Link className="link" to="/profile" onClick={() => this.toggleMenu()}>Profile</Link>
                             </div>
                             <div className="menuItem">
                                 <img src="http://i63.tinypic.com/35jcg04.jpg" alt="" />
