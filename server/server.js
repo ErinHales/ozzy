@@ -14,6 +14,8 @@ app.use(bodyParser.json());
 const server = http.createServer(app);
 const io = socket(server);
 
+app.use(express.static(__dirname+'/../build'));
+
 // controllers
 const authControllers = require('./controllers/auth-controllers');
 const postControllers = require('./controllers/post-controllers');
