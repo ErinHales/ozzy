@@ -18,6 +18,8 @@ export default class Nav extends Component {
             this.setState({
                 userPhoto: res.data.picture
             })
+        }).catch(err=>{
+            console.error(err)
         })
     }
 

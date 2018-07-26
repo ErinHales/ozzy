@@ -85,12 +85,12 @@ app.get('/auth/callback', (req, res) => {
       app.get("db").users.find_user([response.data.sub]).then(user => {
         if(user[0]) {
           req.session.user = user[0];
-          return res.redirect('http://localhost:3000/#/forum');
+          return res.redirect(`${process.env.FRONTEND_DOMAIN}/#/forum`);
         } else {
           let {given_name: first_name, family_name: last_name, email: username, sub, picture} = response.data;
           app.get("db").users.register_user([first_name, last_name, username, sub, picture]).then(newUser => {
             req.session.user = newUser[0];
-            return res.redirect('http://localhost:3000/#/getstarted');
+            return res.redirect(`${process.env.FRONTEND_DOMAIN}/#/getstarted`);
           })
         }
       })   

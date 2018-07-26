@@ -6,13 +6,34 @@ import moment from 'moment'
  */
 
 const handleDaily = (calendar, recurrence, e) => {
+    console.log(e);
     const start = moment(e.start.dateTime)
     const end = moment(e.end.dateTime)
+
     // reformat reponse to get how many days between each recurrence
-    const wtfGoogle = (e.recurrence[0].split(";").pop().split("=").pop() !== "DAILY")
-        ? parseInt(e.recurrence[0].split(";").pop().split("=").pop())
-        : 1
-    const n = wtfGoogle
+
+    // let index = e.recurrence[0].charAt(":");
+    // e.recurrence[0].splice(index, 1);
+    let arr = e.recurrence[0].toLowerCase().split(":");
+    let findInterval = (arr[1].split(";"))
+    let eventObj = {};
+    findInterval.forEach(recurrence => {
+        recurrence = recurrence.split("=");
+        eventObj[recurrence[0]] = recurrence[1];
+    })
+    
+    const wtfGoogle = getValues(eventObj);
+
+    function getValues(obj) {
+        // if (eventObj[RRULEFREQ] === "DAILY" && eventObj[INTERVAL] === true) {
+            // return eventObj.INTERVAL;
+        if(obj.freq && obj.interval) {
+            return 2;
+        } else {
+            return 1;
+        }
+    }
+    const n = wtfGoogle;
     let add = wtfGoogle
     let reoccurringEvents = []
 

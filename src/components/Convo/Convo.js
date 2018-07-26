@@ -4,7 +4,7 @@ import axios from 'axios';
 import io from 'socket.io-client';
 import Message from '../Message/Message';
 
-const socket = io("http://localhost:4000");
+const socket = io(window.location);
 
 export default class Convo extends Component {
     constructor() {
@@ -31,7 +31,6 @@ export default class Convo extends Component {
             thread: [],
             date: messageDate
         }
-        // this.socket = socketIOClient("http://localhost:4000");
         
     }
 

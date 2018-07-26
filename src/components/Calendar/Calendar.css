@@ -3,9 +3,62 @@
     padding: 20px;
     height: 90vh;
     background-color: white;
+    position: relative;
 }
 
 .rbc-event-content {
     font-size: 10px;
     margin: 0px;
+}
+
+.calendar-container div {
+    z-index: 0;
+}
+
+.rbc-btn-group button {
+    font-size: 3vw;
+}
+
+.rbc-time-header-content {
+    font-size: 3vw;
+    height: 5vw;
+}
+
+.rbc-toolbar-label {
+    font-size: 3vw;
+}
+
+
+
+
+
+@media (max-width: 600px) {
+    .rbc-time-view {
+        position: relative;
+        top: 5vw;
+    }
+    .rbc-month-view {
+        position: relative;
+        top: 5vw;
+    }
+    .rbc-toolbar-label {
+        font-size: 3vw;
+        position: absolute;
+        left: 5px;
+        top: 10vw;
+    }
+}
+
+
+@media (max-width: 600px) {
+    .rbc-time-view {
+        height: 0px;
+    }
+}
+
+@media (max-width: 600px) {
+    .calendar-container {
+        padding: 0px;
+        padding-top: 5px;
+    }
 }
