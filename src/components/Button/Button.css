@@ -13,3 +13,6 @@ button {
     position: relative;
     bottom: 3px;
 }
+
+
+body::-webkit-scrollbar { width: 0; }

@@ -15,20 +15,21 @@ import './App.css';
 class App extends Component {
   render() {
     return (
+      // <div>Stop</div>
       <HashRouter>
         <div>
         <Nav />
-          <Switch>
-            <Route exact path="/" component={Welcome} />
-            <Route path="/forum" component={Forum} />
-            <Route path="/new" component={NewPost} />
-            <Route path="/profile" component={Profile} />
-            <Route path="/find" component={Map} />
-            <Route path="/getstarted" component={Questions} />
-            <Route path="/messages" component={Messages} />
-            <Route path="/message/:id" component={Convo} />
-            <Route path="/calendar" component={Calendar} />
-          </Switch>
+        <Switch>
+          <Route exact path="/" component={Welcome} />
+          <Route path="/forum" component={Forum} />
+          <Route path="/new" component={NewPost} />
+          <Route path="/profile" component={Profile} />
+          <Route path="/find" component={Map} />
+          <Route path="/getstarted" component={Questions} />
+          <Route path="/messages" component={Messages} />
+          <Route path="/message/:id" component={Convo} />
+          <Route path="/calendar" component={Calendar} />
+        </Switch>
         </div>
       </HashRouter>
     );

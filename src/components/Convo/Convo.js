@@ -4,8 +4,8 @@ import axios from 'axios';
 import io from 'socket.io-client';
 import Message from '../Message/Message';
 
-const socket = io(window.location);
-
+// const socket = io();
+console.log(window.location)
 export default class Convo extends Component {
     constructor() {
         super();
@@ -31,11 +31,11 @@ export default class Convo extends Component {
             thread: [],
             date: messageDate
         }
-        
+        this.socket = io();
     }
 
     componentDidMount() {
-        socket.on("connection", response => {
+        this.socket.on("connection", response => {
             console.log("hello");
         })
         axios.get(`/api/thread/${this.props.match.params.id}`).then(response => {
@@ -62,7 +62,7 @@ export default class Convo extends Component {
     sendMessage = () => {
         // conversation_id, care_provider_id, date, message, messager_id, messager
         let { care_provider_id, conversation_id, user_id } = this.state.thread[0];
-        socket.emit("send", {conversation_id: conversation_id, care_provider_id: care_provider_id, date: this.state.date, message: this.state.message, user_id: user_id});
+        this.socket.emit("send", {conversation_id: conversation_id, care_provider_id: care_provider_id, date: this.state.date, message: this.state.message, user_id: user_id});
     }
     
     updateThread = () => {

@@ -11,7 +11,7 @@ require('dotenv').config();
 const app = express();
 app.use(bodyParser.json());
 
-const server = http.createServer(app);
+const server = http.Server(app);
 const io = socket(server);
 
 app.use(express.static(__dirname+'/../build'));
