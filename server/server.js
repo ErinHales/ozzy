@@ -38,7 +38,7 @@ io.on("connection", socket => {
 });
 // app.use(authMiddleware.bypassAuthInDevelopment);
 
-const {SERVER_PORT, CONNECTION_STRING, SESSION_SECRET} = process.env;
+const {SERVER_PORT, CONNECTION_STRING, SESSION_SECRET, PROTOCOL, REACT_APP_CLOUD_NAME,CLOUDINARY_API_KEY,CLOUDINARY_API_SECRET, REACT_APP_DOMAIN, FRONTEND_DOMAIN} = process.env;
 
 app.use(session({
     secret: SESSION_SECRET,
@@ -47,9 +47,9 @@ app.use(session({
   }));
 
   cloudinary.config({ 
-    cloud_name: process.env.REACT_APP_CLOUD_NAME, 
-    api_key: process.env.CLOUDINARY_API_KEY, 
-    api_secret: process.env.CLOUDINARY_API_SECRET 
+    cloud_name: REACT_APP_CLOUD_NAME, 
+    api_key: CLOUDINARY_API_KEY, 
+    api_secret: CLOUDINARY_API_SECRET 
   });
 
 massive(CONNECTION_STRING).then(function(db) {
@@ -62,43 +62,44 @@ massive(CONNECTION_STRING).then(function(db) {
 
 // Auth0 authentication code
 app.get('/auth/callback', (req, res) => {
+  console.log(1111)
     let {REACT_APP_CLIENT_ID, REACT_APP_CLIENT_SECRET} = process.env;
-  
     let payload ={
       client_id: REACT_APP_CLIENT_ID,
       client_secret: REACT_APP_CLIENT_SECRET,
       code: req.query.code,
       grant_type: "authorization_code", 
-      redirect_uri: `http://${req.headers.host}/auth/callback`
+      redirect_uri: `${PROTOCOL}://${req.headers.host}/auth/callback`
     }
 
     function tradeCodeForAccessToken(){
-      return axios.post(`https://${process.env.REACT_APP_DOMAIN}/oauth/token`, payload)
+      console.log(22222)
+      return axios.post(`https://${REACT_APP_DOMAIN}/oauth/token`, payload)
     }
 
     function tradeAccessTokenForUserInfo(response){
+      console.log(333333)
       let token = response.data.access_token;
-      return axios.get(`https://${process.env.REACT_APP_DOMAIN}/userinfo/?access_token=${token}`);
+      return axios.get(`https://${REACT_APP_DOMAIN}/userinfo/?access_token=${token}`);
     }
     
     
 
     function storeUserInfoInDataBase(response){
+      console.log(44444);
       app.get("db").users.find_user([response.data.sub]).then(user => {
         if(user[0]) {
           req.session.user = user[0];
-          return res.redirect(`${process.env.FRONTEND_DOMAIN}/#/forum`);
+          return res.redirect(`${FRONTEND_DOMAIN}/#/forum`);
         } else {
           let {given_name: first_name, family_name: last_name, email: username, sub, picture} = response.data;
           app.get("db").users.register_user([first_name, last_name, username, sub, picture]).then(newUser => {
             req.session.user = newUser[0];
-            return res.redirect(`${process.env.FRONTEND_DOMAIN}/#/getstarted`);
+            return res.redirect(`${FRONTEND_DOMAIN}/#/getstarted`);
           })
         }
       })   
     }
-
-    //Final Code, Uncomment after completeing steps 1-4 above
     
     tradeCodeForAccessToken()
     .then(accessToken => tradeAccessTokenForUserInfo(accessToken))

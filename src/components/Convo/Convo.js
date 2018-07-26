@@ -4,7 +4,6 @@ import axios from 'axios';
 import io from 'socket.io-client';
 import Message from '../Message/Message';
 
-// const socket = io();
 console.log(window.location)
 export default class Convo extends Component {
     constructor() {
