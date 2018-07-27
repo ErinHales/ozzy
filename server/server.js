@@ -27,7 +27,6 @@ const messageControllers = require('./controllers/message-controllers.js');
 
 io.on("connection", socket => {
   console.log("New client connected");
-  console.log(socket.id);
 //   socket.on("message", app.get("db").someFunction()
   socket.on("send", async function(data) {
     let db = app.get("db")
@@ -136,6 +135,8 @@ app.post('/api/newconvo', messageControllers.newConvo);
 app.post('/api/newmessage', messageControllers.newMessage);
 app.get('/api/last', messageControllers.getLastMessage);
 
+// users
+app.post('/api/newparent', userControllers.createParentInfo);
 
 
 

@@ -3,6 +3,8 @@ import GetStarted from './GetStarted';
 import Question1 from './Question1';
 import ParentQ from './ParentQ';
 import CareProviderQ from './CareProviderQ';
+import ParentQ2 from './ParentQ2';
+import axios from 'axios';
 import './Questions.css';
 
 export default class Questions extends Component {
@@ -13,11 +15,13 @@ export default class Questions extends Component {
             status: "",
             subscribed: "",
             careType: "",
+            childCare: false,
             // the following values are the position from the left(in percentages). 0 would be onscreen. 100 would be offscreen to the right. -100 would be offscreen to the left.  Transitions are managed in Questions.css
             getStarted: 0,
             question1: 100,
             parentQ: 100,
-            careProviderQ: 100,
+            parentQ2: 100,
+            careProviderQ: 100
         }
     }
 
@@ -45,14 +49,23 @@ export default class Questions extends Component {
         })
     }
 
+    submitNewParent = () => {
+        let {status, subscribed, childCare} = this.state;
+        axios.post('/api/newparent', {status: status, childcare: childCare, newsfeed: subscribed}).then(() => {
+            console.log("Hello, new user!");
+        })
+    }
+
     render() {
         // houses all of the question components and slides them on and offscreen
+        console.log(this.state);
         return (
             <div>
                 <GetStarted slider={this.slider} slideBack={this.slideBack} position={this.state.getStarted}/>
                 <Question1 slider={this.slider} slideBack={this.slideBack} position={this.state.question1}  updateStatus={this.updateState} status={this.state.status} />
-                <ParentQ slider={this.slider} slideBack={this.slideBack} position={this.state.parentQ} />
-                <CareProviderQ updateCareType={this.updateState} slider={this.slider} slideBack={this.slideBack} position={this.state.careProviderQ} />
+                <ParentQ slider={this.slider} slideBack={this.slideBack} position={this.state.parentQ} updateState={this.updateState} />
+                <ParentQ2 slider={this.slider} slideBack={this.slideBack} position={this.state.parentQ2} updateState={this.updateState} submit={this.submitNewParent} childCare={this.state.childCare}/>
+                <CareProviderQ updateCareType={this.updateState} slider={this.slider} slideBack={this.slideBack} position={this.state.careProviderQ} careType={this.state.careType} />
             </div>
         )
     }

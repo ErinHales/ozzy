@@ -30,5 +30,13 @@ module.exports = {
             res.status(500).send(err);
             console.log(err);
         })
+    },
+    createParentInfo: (req,res) => {
+        req.app.get("db").users.create_parent_info([req.session.user.id, req.body.status, req.body.childcare, req.body.newsfeed]).then(() => {
+            res.status(200);
+        }).catch(err => {
+            res.status(500).send(err);
+            console.log(err);
+        })
     }
 }
