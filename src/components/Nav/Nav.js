@@ -71,6 +71,10 @@ export default class Nav extends Component {
                                 <Link className="link" to="/profile" onClick={() => this.toggleMenu()}>Profile</Link>
                             </div>
                             <div className="menuItem">
+                                <img src="http://i68.tinypic.com/2sbpi0o.jpg" alt="profile" />
+                                <Link className="link" to="/privacyPolicy" onClick={() => this.toggleMenu()}>Privacy Policy</Link>
+                            </div>
+                            <div className="menuItem">
                                 <img src="http://i63.tinypic.com/35jcg04.jpg" alt="" />
                                 <Link className="link" to="/" onClick={() => this.toggleMenu()}>Logout</Link><br />
                             </div>
