@@ -62,7 +62,6 @@ massive(CONNECTION_STRING).then(function(db) {
 
 // Auth0 authentication code
 app.get('/auth/callback', (req, res) => {
-  console.log(1111)
     let {REACT_APP_CLIENT_ID, REACT_APP_CLIENT_SECRET} = process.env;
     let payload ={
       client_id: REACT_APP_CLIENT_ID,
@@ -73,12 +72,10 @@ app.get('/auth/callback', (req, res) => {
     }
 
     function tradeCodeForAccessToken(){
-      console.log(22222)
       return axios.post(`https://${REACT_APP_DOMAIN}/oauth/token`, payload)
     }
 
     function tradeAccessTokenForUserInfo(response){
-      console.log(333333)
       let token = response.data.access_token;
       return axios.get(`https://${REACT_APP_DOMAIN}/userinfo/?access_token=${token}`);
     }
@@ -86,7 +83,6 @@ app.get('/auth/callback', (req, res) => {
     
 
     function storeUserInfoInDataBase(response){
-      console.log(44444);
       app.get("db").users.find_user([response.data.sub]).then(user => {
         if(user[0]) {
           req.session.user = user[0];
@@ -138,6 +134,7 @@ app.get('/api/thread/:id', messageControllers.getConvo);
 app.get('/api/messages', messageControllers.getMessages);
 app.post('/api/newconvo', messageControllers.newConvo);
 app.post('/api/newmessage', messageControllers.newMessage);
+app.get('/api/last', messageControllers.getLastMessage);
 
 
 

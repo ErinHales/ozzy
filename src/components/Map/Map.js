@@ -15,6 +15,10 @@ export default class Map extends Component {
                 lat: 40.7608333,
                 lng: -111.8902778
             },
+            defaultCenter: {
+                lat: null,
+                lng: null
+            },
             zoom: 11,
             careProviderInfo: [],
             coords: {},
@@ -35,6 +39,10 @@ export default class Map extends Component {
             // this.state.center is the center of where the map will focus
             this.setState({
                 center: {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                },
+                defaultCenter: {
                     lat: position.coords.latitude,
                     lng: position.coords.longitude
                 }
@@ -71,9 +79,19 @@ export default class Map extends Component {
                     mapArr.push(<MapItem lat={response.lat} lng={response.lng} key={care_provider_id} width={width} />)
                 })
             })
-            this.setState({
-                mapItems: mapArr
-            })
+            if (this.state.selectedCareProvider === null) {
+                this.setState({
+                    mapItems: mapArr,
+                    center: {
+                        lat: this.state.defaultCenter.lat,
+                        lng: this.state.defaultCenter.lng
+                    }
+                })
+            } else {
+                this.setState({
+                    mapItems: mapArr
+                })
+            }
         }
     }
 

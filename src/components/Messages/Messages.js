@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
+import ViewConvo from '../ViewConvos/ViewConvo';
 import "./Messages.css";
 
 export default class Messages extends Component {
@@ -23,7 +24,7 @@ export default class Messages extends Component {
     render() {
         let messageArr = [];
         this.state.messages.forEach(thread => {
-            messageArr.push(<Link to={`/message/${thread.care_provider}`} className="messageLink"><img src={thread.image} alt="care provider"/><div className="messageThread"><p>{thread.name}</p></div></Link>);
+            messageArr.push(<ViewConvo thread={thread} />);
         })
         return (
             <div>
