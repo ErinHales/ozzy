@@ -23,7 +23,7 @@ export default class Messages extends Component {
     render() {
         let messageArr = [];
         this.state.messages.forEach(thread => {
-            messageArr.push(<Link to={`/message/${thread.care_provider}`} className="messageLink"><div className="messageThread"><p>{thread.name}</p><img src={thread.image} alt="care provider"/></div></Link>);
+            messageArr.push(<Link to={`/message/${thread.care_provider}`} className="messageLink"><img src={thread.image} alt="care provider"/><div className="messageThread"><p>{thread.name}</p></div></Link>);
         })
         return (
             <div>

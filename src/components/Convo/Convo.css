@@ -5,12 +5,12 @@
     position: fixed;
     bottom: 0;
 }
-
+/* 
 .messagesContainer > div {
     position: absolute;
     bottom: 120px;
     z-index: -1;
-}
+} */
 
 .sendMessage {
     background-color: transparent;
@@ -21,6 +21,15 @@
 }
 
 .messagesContainer > div {
-    overflow-y: scroll;
+    bottom: 100px;
     height: calc(100vh - 200px);
+    z-index: -1;
+}
+
+.reverseMessages {
+    display: flex;
+    flex-direction: column-reverse;
+    height: 100%;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }

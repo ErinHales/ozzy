@@ -15,12 +15,12 @@ export default class Convo extends Component {
         var date = d.getDate();
         var time = "AM";
         var hour = d.getHours();
-        if(hour > 12) {
+        if (hour > 12) {
             hour -= 12;
             time = "PM";
         }
         var minutes = d.getMinutes();
-        if(minutes < 10) {
+        if (minutes < 10) {
             minutes = `0${minutes}`;
         }
         let messageDate = `${hour}:${minutes} ${time} ${months[month]} ${date}, 2018`;
@@ -61,9 +61,9 @@ export default class Convo extends Component {
     sendMessage = () => {
         // conversation_id, care_provider_id, date, message, messager_id, messager
         let { care_provider_id, conversation_id, user_id } = this.state.thread[0];
-        this.socket.emit("send", {conversation_id: conversation_id, care_provider_id: care_provider_id, date: this.state.date, message: this.state.message, user_id: user_id});
+        this.socket.emit("send", { conversation_id: conversation_id, care_provider_id: care_provider_id, date: this.state.date, message: this.state.message, user_id: user_id });
     }
-    
+
     updateThread = () => {
         axios.get(`/api/thread/${this.props.match.params.id}`).then(response => {
             this.setState({
@@ -72,26 +72,33 @@ export default class Convo extends Component {
             })
         })
     }
+    handleSendMessage() {
+        this.newConversation();
+        if (this.state.message !== "") {
+            this.sendMessage();
+            this.updateThread();
+        }
+    }
+
+    // scroll() {
+    //     var myChatBox = document.getElementById("autoScroll");
+    //     myChatBox.scrollTop = myChatBox.scrollHeight;
+    // }
 
     render() {
         let messageArr = [];
         this.state.thread.forEach(message => {
             messageArr.push(<Message messageData={message} />);
         })
+
         return (
-            <div className="messagesContainer">
-                <div className="displayMessagesContainer">
+            <form className="messagesContainer" onSubmit={() => this.handleSendMessage()}>
+                <div className="reverseMessages">
                     {messageArr}
                 </div>
-                <textarea type="text" placeholder="type here" value={this.state.message} onChange={(e) => this.handleChange(e)}></textarea>
-                <img src="http://i64.tinypic.com/jzwkuh.jpg" alt="send" className="sendMessage" onClick={() => {
-                    this.newConversation();
-                    if(this.state.message !== "") {
-                        this.sendMessage();
-                        this.updateThread();
-                    }
-                }} />
-            </div>
-        )
-    }
+                <textarea type="text" placeholder="type here" value={this.state.message} onChange={(e) => this.handleChange(e)} onKeyUp={(event) => event.key === "Enter" ? this.handleChange(event) : null}></textarea>
+                <img src="http://i64.tinypic.com/jzwkuh.jpg" alt="send" className="sendMessage" onClick={() => this.handleSendMessage()}/>
+            </ form>
+                )
+            }
 }
