@@ -119,10 +119,6 @@ app.post('/api/newlike/:postid', postControllers.likeNewPost);
 app.get('/api/comments/:postid', postControllers.getComments);
 app.post('/api/comment/:postid', postControllers.leaveComment);
 app.post('/api/newpost', postControllers.newPost);
-app.get('/api/getuserinfo', userControllers.getUserInfo);
-app.put('/api/parentinfo', userControllers.updateParentInfo);
-app.put('/api/userinfo', userControllers.updateUserInfo);
-app.put('/api/familypic', userControllers.updateFamilyMemberPic);
 
 
 // care providers 
@@ -136,6 +132,10 @@ app.post('/api/newmessage', messageControllers.newMessage);
 app.get('/api/last', messageControllers.getLastMessage);
 
 // users
+app.get('/api/getuserinfo', userControllers.getUserInfo);
+app.put('/api/parentinfo', userControllers.updateParentInfo);
+app.put('/api/userinfo', userControllers.updateUserInfo);
+app.put('/api/familypic', userControllers.updateFamilyMemberPic);
 app.post('/api/newparent', userControllers.createParentInfo);
 
 

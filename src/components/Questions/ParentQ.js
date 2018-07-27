@@ -1,54 +1,21 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 
-export default class ParentQ extends Component {
-    constructor() {
-        super();
-
-        this.state = {
-            subscriptions: []
-        }
-    }
-
-    updateSubscriptions(subscription) {
-        let copy = this.state.subscriptions.slice();
-        let index = copy.indexOf(subscription)
-        if(index >= 0) {
-            copy.splice(index, 1);
-        } else {
-            copy.push(subscription);
-        }
-        this.setState({
-            subscriptions: copy
-        })
-    }
-
+export default class ParentQ2 extends Component {
     getColor(val) {
-        if(this.state.subscriptions.indexOf(val) >= 0) {
+        if (this.props.childCare === val) {
             return "#3F254B";
         } else {
             return "#5D356D";
         }
     }
-
     render() {
-        console.log(this.state);
         return (
             <div className="parentQ" style={{left: `${this.props.position}%`}}>
-                <h3>What channels would you like to see in your newsfeed?</h3>
-                <button onClick={() => this.updateSubscriptions("Just Moms")} style={{backgroundColor: this.getColor("Just Moms")}}>Just Moms</button>
-                <button onClick={() => this.updateSubscriptions("Just Dads")} style={{backgroundColor: this.getColor("Just Dads")}}>Just Dads</button>
-                <button onClick={() => this.updateSubscriptions("Expecting")} style={{backgroundColor: this.getColor("Expecting")}}>Expecting</button>
-                <button onClick={() => this.updateSubscriptions("Babies")} style={{backgroundColor: this.getColor("Babies")}}>Babies</button>
-                <button onClick={() => this.updateSubscriptions("Toddlers")} style={{backgroundColor: this.getColor("Toddlers")}}>Toddlers</button>
-                <button onClick={() => this.updateSubscriptions("Elementary")} style={{backgroundColor: this.getColor("Elementary")}}>Elementary</button>
-                <button onClick={() => this.updateSubscriptions("Pre-Teen")} style={{backgroundColor: this.getColor("Pre-Teen")}}>Pre-Teen</button>
-                <button onClick={() => this.updateSubscriptions("Teen")} style={{backgroundColor: this.getColor("Teen")}}>Teen</button>
-                <button onClick={() => this.updateSubscriptions("All Grown Up")} style={{backgroundColor: this.getColor("All Grown Up")}}>All Grown Up</button>
-                <button id="next" onClick={() => {
-                    this.props.updateState("subscribed", this.state.subscriptions.join(", "));
-                    this.props.slider("parentQ", "parentQ2");
-                }}><img src="http://i65.tinypic.com/309k6z5.jpg" alt=""/></button>
-                <button id="prev" onClick={() => this.props.slideBack("parentQ","question1")}><img src="http://i68.tinypic.com/2wd99fn.jpg" alt=""/></button>
+                <h3>Are you interested <br/>in finding child care?</h3>
+                <button onClick={() => this.props.updateState("childCare", true)} style={{backgroundColor: this.getColor(true)}}>Yes</button>
+                <button onClick={() => this.props.updateState("childCare", false)} style={{backgroundColor: this.getColor(false)}}>No</button>
+                <button id="next" onClick={() => this.props.slider("parentQ","parentQ2")}><img src="http://i65.tinypic.com/309k6z5.jpg" alt=""/></button>
+                <button id="prev" onClick={() => this.props.slideBack("parentQ", "question1")}><img src="http://i68.tinypic.com/2wd99fn.jpg" alt="" /></button>
             </div>
         )
     }

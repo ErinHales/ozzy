@@ -1,7 +1,10 @@
 .getStarted,
 .question1,
 .parentQ,
-.careProviderQ {
+.careProviderQ,
+.parentQ2,
+.careProviderQ2,
+.parentQ3 {
     position: absolute;
     width: 100vw;
     height: 90vh;
@@ -18,6 +21,7 @@
 
 .question1 button,
 .parentQ button,
+.parentQ2 button,
 .careProviderQ button {
     padding: 5px;
     font-size: 20px;
@@ -42,4 +46,28 @@
     left: 10px;
     width: 30px;
     background-color: #9B59B6;
+}
+
+.tellUs h3,
+.tellUs h5 {
+    padding: 5px;
+    margin: 5px;
+}
+
+.longBio {
+    width: 50%;
+    height: 150px;
+    border-radius: 5px;
+    outline: none;
+}
+
+.shortBio {
+    width: 50%;
+    height: 50px;
+    border-radius: 5px;
+    outline: none;
+}
+
+.dropzone {
+    width: 70%;
 }

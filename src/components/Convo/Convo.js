@@ -4,7 +4,6 @@ import axios from 'axios';
 import io from 'socket.io-client';
 import Message from '../Message/Message';
 
-console.log(window.location)
 export default class Convo extends Component {
     constructor() {
         super();
@@ -79,11 +78,6 @@ export default class Convo extends Component {
             this.updateThread();
         }
     }
-
-    // scroll() {
-    //     var myChatBox = document.getElementById("autoScroll");
-    //     myChatBox.scrollTop = myChatBox.scrollHeight;
-    // }
 
     render() {
         let messageArr = [];
