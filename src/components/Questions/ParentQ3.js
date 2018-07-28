@@ -63,7 +63,7 @@ export default class ParentQ3 extends Component {
                         </div>
                     </div>
                 </Dropzone>
-                <Link to="/forum"><button id="next" onClick={() => this.props.slider("parentQ","parentQ2")}><img src="http://i65.tinypic.com/309k6z5.jpg" alt=""/></button></Link>
+                <Link to="/forum"><button id="next" onClick={() => this.props.submit(this.state.userPic)}><img src="http://i65.tinypic.com/309k6z5.jpg" alt=""/></button></Link>
                 <button id="prev" onClick={() => this.props.slideBack("parentQ3", "parentQ2")}><img src="http://i68.tinypic.com/2wd99fn.jpg" alt="" /></button>
             </div>
         )

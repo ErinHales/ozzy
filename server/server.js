@@ -123,6 +123,8 @@ app.post('/api/newpost', postControllers.newPost);
 
 // care providers 
 app.get('/api/addresses', careControllers.getAddresses);
+app.post('/api/newcareprovider', careControllers.newCareProvider);
+app.post('/api/newaddress', careControllers.newAddress);
 
 // messages
 app.get('/api/thread/:id', messageControllers.getConvo);

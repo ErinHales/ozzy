@@ -5,8 +5,17 @@ export default class CareProviderQ2 extends Component {
         super();
 
         this.state = {
+            name: "",
             shortBio: "",
             longBio: ""
+        }
+    }
+
+    updateName = (e) => {
+        if (e.target.value.length < 40) {
+            this.setState({
+                name: e.target.value
+            })
         }
     }
 
@@ -26,10 +35,21 @@ export default class CareProviderQ2 extends Component {
         }
     }
 
+    handleClick = () => {
+        this.props.updateState("name", this.state.name);
+        this.props.updateState("shortBio", this.state.shortBio);
+        this.props.updateState("longBio", this.state.longBio);
+        this.props.slider("careProviderQ2", "careProviderQ3");
+    }
+
     render() {
         return (
-            <div className="careProviderQ2" style={{ left: `${this.props.position}%`}}>
+            <div className="careProviderQ2" style={{ left: `${this.props.position}%` }}>
                 <h3>Build your Profile!</h3>
+                <div className="tellUs">
+                    <h3>Name</h3>
+                    <input type="text" value={this.state.name} onChange={(e) => this.updateName(e)}/>
+                </div>
                 <div className="tellUs">
                     <h3>Tell us a little bit about yourself</h3>
                     <h5>(1000 characters)</h5>
@@ -40,7 +60,7 @@ export default class CareProviderQ2 extends Component {
                     <h5>(200 characters)</h5>
                 </div>
                 <textarea className="shortBio" onChange={(e) => this.updateShortBio(e)} value={this.state.shortBio}></textarea>
-                <button id="next" onClick={() => this.props.slider("careProviderQ2", "parentQ2")}><img src="http://i65.tinypic.com/309k6z5.jpg" alt="" /></button>
+                <button id="next" onClick={() => this.handleClick()}><img src="http://i65.tinypic.com/309k6z5.jpg" alt="" /></button>
                 <button id="prev" onClick={() => this.props.slideBack("careProviderQ2", "careProviderQ")}><img src="http://i68.tinypic.com/2wd99fn.jpg" alt="" /></button>
             </div>
         )
