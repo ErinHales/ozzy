@@ -18,5 +18,11 @@ button:hover {
     bottom: 3px;
 }
 
+input,
+select,
+textarea {
+    outline: none;
+}
+
 
 body::-webkit-scrollbar { width: 0; }

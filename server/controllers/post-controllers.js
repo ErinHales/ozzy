@@ -64,5 +64,21 @@ module.exports = {
             res.status(500).send(err);
             console.log(err);
         })
+    },
+    filter: (req,res) => {
+        let filter = req.params.filter.split(", ");
+        let filterArr = [];
+        for(var i=0; i<filter.length; i++) {
+            filterArr.push(filter[i]);
+        }
+        while(filterArr.length < 9) {
+            filterArr.push(null);
+        }
+        req.app.get("db").posts.filter_posts(filterArr).then(response => {
+            res.status(200).send(response);
+        }).catch(err => {
+            res.status(500).send(err);
+            console.log(err);
+        })
     }
 }

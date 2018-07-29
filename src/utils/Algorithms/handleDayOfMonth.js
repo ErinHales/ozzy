@@ -8,7 +8,7 @@ import moment from 'moment'
 const handleDayOfMonth = (calendar, recurrence, e) => {
     const start = moment(e.start.dateTime)
     const end = moment(e.end.dateTime)
-    const day = start.day()
+    // const day = start.day()
     const date = start.date()
     let counter
     if (date <= 7) {

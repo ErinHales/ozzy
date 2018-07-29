@@ -30,6 +30,9 @@ export default class Convo extends Component {
             date: messageDate
         }
         this.socket = io();
+        // this.socket.on("sent", function() {
+        //     this.updateThread();
+        // })
     }
 
     componentDidMount() {
@@ -58,9 +61,10 @@ export default class Convo extends Component {
     }
 
     sendMessage = () => {
-        // conversation_id, care_provider_id, date, message, messager_id, messager
-        let { care_provider_id, conversation_id, user_id } = this.state.thread[0];
-        this.socket.emit("send", { conversation_id: conversation_id, care_provider_id: care_provider_id, date: this.state.date, message: this.state.message, user_id: user_id });
+        axios.post('/api/newmessage', {care_provider_id: this.props.match.params.id, date: this.state.date, message: this.state.message}).then(() => {
+            this.updateThread();
+            // this.socket.emit("send");
+        })
     }
 
     updateThread = () => {
@@ -71,15 +75,17 @@ export default class Convo extends Component {
             })
         })
     }
+
     handleSendMessage() {
         this.newConversation();
         if (this.state.message !== "") {
             this.sendMessage();
-            this.updateThread();
+            // this.updateThread();
         }
     }
 
     render() {
+        console.log(this.state.thread);
         let messageArr = [];
         this.state.thread.forEach(message => {
             messageArr.push(<Message messageData={message} />);

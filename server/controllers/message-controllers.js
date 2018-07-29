@@ -1,6 +1,6 @@
 module.exports = {
     getConvo: (req,res) => {
-        req.app.get("db").messages.get_message_thread(req.params.id).then(response => {
+        req.app.get("db").messages.get_message_thread([req.session.user.id, req.params.id]).then(response => {
             res.status(200).send(response);
         }).catch(err => {
             console.log(err);
@@ -24,9 +24,9 @@ module.exports = {
         })
     },
     newMessage: (req,res) => {
-        //conversation_id, user_id, date, message, messager_id, messager
-        let { conversation_id, user_id, date, message } = req.body;
-        req.app.get("db").messages.create_message([conversation_id, user_id, date,message, req.session.user.id, "User"]).then(response => {
+        // care_provider_id, date, message, user_id, messager
+        let { care_provider_id, date, message } = req.body;
+        req.app.get("db").messages.create_message([care_provider_id, date, message, req.session.user.id, "User"]).then(response => {
             res.status(200).send(response);
         }).catch(err => {
             console.log(err);

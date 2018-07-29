@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 
 export default class CareProviderQ3 extends Component {
     constructor() {
@@ -36,7 +35,7 @@ export default class CareProviderQ3 extends Component {
                 <h3>City</h3>
                 <input type="text" onChange={(e) => this.updateState("city", e)}/>
                 <h3>State</h3>
-                <select onChange={(e) => this.updateState("state", e)}>
+                <select className="status" onChange={(e) => this.updateState("state", e)}>
                     <option>Alabama(AL)</option>
                     <option value="AK">Alaska(AK)</option>
                     <option value="AZ">Arizona(AZ)</option>

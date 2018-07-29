@@ -28,10 +28,11 @@ const messageControllers = require('./controllers/message-controllers.js');
 io.on("connection", socket => {
   console.log("New client connected");
 //   socket.on("message", app.get("db").someFunction()
-  socket.on("send", async function(data) {
-    let db = app.get("db")
-    // conversation_id, care_provider_id, date, message, messager_id, messager
-    await db.messages.create_message([data.conversation_id, data.care_provider_id, data.date, data.message,  data.user_id, "User"]).catch(err => console.log(err));
+  socket.on("send", function() {
+    // let db = app.get("db")
+    // // care_provider_id, date, message, user_id, messager
+    // await db.messages.create_message([data.care_provider_id, data.date, data.message,  3, "User"]).catch(err => console.log(err));
+    socket.emit("new message");
   })
   socket.on("disconnect", () => console.log("Client disconnected"));
 });
@@ -113,6 +114,7 @@ app.get('/api/secure-data', authControllers.checkLoggedIn, authControllers.secur
 // post controllers
 app.get('/api/posts', postControllers.getPosts);
 app.get('/api/liked/:postid', postControllers.getLikedPosts);
+app.get('/api/filter/:filter', postControllers.filter);
 app.put('/api/like/:postid', postControllers.likePost);
 app.put('/api/love/:postid', postControllers.lovePost);
 app.post('/api/newlike/:postid', postControllers.likeNewPost);

@@ -1,6 +1,6 @@
 .messagesContainer textarea {
     width: 94%;
-    height: 100px;
+    height: 50px;
     margin: 2%;
     position: fixed;
     bottom: 0;
@@ -21,8 +21,8 @@
 }
 
 .messagesContainer > div {
-    bottom: 100px;
-    height: calc(100vh - 200px);
+    bottom: 60px;
+    height: calc(100vh - 155px);
     z-index: -1;
 }
 
