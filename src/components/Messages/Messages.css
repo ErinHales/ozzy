@@ -16,3 +16,12 @@
     font-family: "Roboto", sans-serif;
     font-weight: bold;
 }
+
+@media (min-width: 500px) {
+    .viewMessages {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}

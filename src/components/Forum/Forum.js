@@ -55,7 +55,7 @@ export default class Forum extends Component {
         return (
             <div className="forumPage">
                 {/* User can filter by topic and also by subscribed newsfeed */}
-                <select className="status filterPosts" onChange={(e) => this.updateFilter(e)}>
+                <select className="status pickFilter" onChange={(e) => this.updateFilter(e)}>
                     <option value={this.state.subscriptions}>Your Subscriptions</option>
                     <option value="Just Moms">Just Moms</option>
                     <option value="Just Dads">Just Dads</option>

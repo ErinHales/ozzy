@@ -34,7 +34,8 @@ module.exports = {
         })
     },
     getLastMessage: (req,res) => {
-        req.app.get("db").messages.get_last_message([req.session.user.id, req.body.id]).then(response => {
+        console.log(req.params);
+        req.app.get("db").messages.get_last_message([req.session.user.id, req.params.id]).then(response => {
             res.status(200).send(response);
         }).catch(err => {
             console.log(err);

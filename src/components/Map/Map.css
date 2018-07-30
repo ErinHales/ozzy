@@ -1,0 +1,15 @@
+@media (min-width: 600px) {
+    .displayCareProviders {
+        width: 600px;
+        margin-left: calc(50% - 300px);
+    }
+}
+
+
+
+/* @media (min-width: 1000px) {
+    .displayCareProviders {
+        width: 49%;
+        margin-left: 10px;
+    }
+} */

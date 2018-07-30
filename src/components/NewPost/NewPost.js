@@ -103,7 +103,7 @@ export default class NewPost extends Component {
                         <textarea type="text" placeholder="type here" className="postText" onChange={(e) => this.updatePost(e)}></textarea>
                         {this.state.image ? <Dropzone onDrop={this.onDrop} className='dropzone' multiple={false}>
                             <div className="overlayContainer">
-                                <img src={this.state.url ? this.state.url : "http://i67.tinypic.com/29w7a83.jpg"} alt="upload" className="postImg" />
+                                <img src={this.state.url ? this.state.url : "http://i63.tinypic.com/2vnorqs.jpg"} alt="upload" className="postImg" />
                                 <div className="middle">
                                     <div className="text">Drag or click to select photo</div>
                                 </div>

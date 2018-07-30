@@ -18,7 +18,7 @@ export default class Nav extends Component {
             this.setState({
                 userPhoto: res.data.picture
             })
-        }).catch(err=>{
+        }).catch(err => {
             console.error(err)
         })
     }
@@ -41,8 +41,10 @@ export default class Nav extends Component {
                 <div>
                     {/* click anywhere on the nav bar to see the slideDown menu */}
                     <div className="nav" onClick={() => this.toggleMenu()}>
-                        <h1>Ozzy</h1>
-                        <img src={this.state.userPhoto} alt="" />
+                        <div className="navContainer">
+                            <h1>Ozzy</h1>
+                            <img src={this.state.userPhoto} alt="" />
+                        </div>
                     </div>
                     <div className={this.state.menu ? "menuOn" : "menuOff"}>
                         <div className="menuLinks">

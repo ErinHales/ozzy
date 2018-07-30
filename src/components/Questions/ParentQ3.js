@@ -55,7 +55,7 @@ export default class ParentQ3 extends Component {
         return (
             <div className="parentQ3" style={{ left: `${this.props.position}%`}}>
                 <h3>Update Your Profile Picture</h3>
-                <Dropzone onDrop={this.onDrop} className='dropzone' multiple={false}>
+                <Dropzone onDrop={this.onDrop} className='dropzone setProfilePic' multiple={false}>
                     <div className="overlayContainer">
                         <img src={this.state.userPic} alt="upload" className="postImg introImg" />
                         <div className="middle">

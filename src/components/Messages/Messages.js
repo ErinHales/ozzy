@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import axios from 'axios';
 import ViewConvo from '../ViewConvos/ViewConvo';
 import "./Messages.css";
@@ -26,8 +26,10 @@ export default class Messages extends Component {
             messageArr.push(<ViewConvo thread={thread} />);
         })
         return (
-            <div>
-                {messageArr}
+            <div className="viewMessagesContainer">
+                <div className="viewMessages">
+                    {messageArr}
+                </div>
             </div>
         )
     }

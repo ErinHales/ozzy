@@ -15,6 +15,10 @@ const calendars = [
     {
         name: 'Erin McBride',
         url: 'mcbridee093@gmail.com'
+    },
+    {
+        name: "Ozzy",
+        url: 'ii34a0djbmvg4n2emfie8m3jfs@group.calendar.google.com'
     }
 ]
 const dailyRecurrence = 700

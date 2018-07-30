@@ -71,3 +71,38 @@
     margin: 17px 17px 17px 10px;
     background-color: #9B59B6;
 }
+
+
+@media (min-width: 600px) {
+    .nav {
+        display: flex;
+        justify-content: center;
+    }
+    .navContainer {
+        width: 600px;
+    }
+}
+
+@media (min-width: 1000px) {
+    .navContainer {
+        width: 1000px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .navContainer {
+        width: 1200px;
+    }
+}
+
+@media (min-width: 1400px) {
+    .navContainer {
+        width: 1400px;
+    }
+}
+
+@media (min-width: 1600px) {
+    .navContainer {
+        width: 1600px;
+    }
+}

@@ -133,7 +133,7 @@ app.get('/api/thread/:id', messageControllers.getConvo);
 app.get('/api/messages', messageControllers.getMessages);
 app.post('/api/newconvo', messageControllers.newConvo);
 app.post('/api/newmessage', messageControllers.newMessage);
-app.get('/api/last', messageControllers.getLastMessage);
+app.get('/api/last/:id', messageControllers.getLastMessage);
 
 // users
 app.get('/api/getuserinfo', userControllers.getUserInfo);

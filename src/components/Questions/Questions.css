@@ -72,6 +72,12 @@
     outline: none;
 }
 
-.dropzone {
+.setProfilePic {
     width: 70%;
+}
+
+@media (min-width: 700px) {
+    .setProfilePic {
+        width: 600px;
+    }
 }

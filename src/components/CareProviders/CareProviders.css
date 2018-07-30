@@ -99,3 +99,9 @@
     font-size: 20px;
     color: black;
 }
+
+@media (min-width: 600px) {
+    .messageButton {
+        top: 52vh;
+    }
+}

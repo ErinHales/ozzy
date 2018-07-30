@@ -4,6 +4,7 @@ import axios from 'axios';
 import CareProvider from '../CareProviders/CareProviders';
 import MapItem from '../MapItem/MapItem';
 import SelectedCareProvider from '../CareProviders/SelectedCareProvider';
+import './Map.css';
 
 export default class Map extends Component {
 
@@ -132,7 +133,9 @@ export default class Map extends Component {
                 >
                     {this.state.mapItems}
                 </GoogleMapReact>
-                {this.state.selectedCareProvider ? <SelectedCareProvider id={this.state.selectedCareProvider} careProviderInfo={this.state.careProviderInfo} selectCareProvider={this.selectCareProvider} /> : usersArr}
+                <div className="displayCareProviders">
+                    {this.state.selectedCareProvider ? <SelectedCareProvider id={this.state.selectedCareProvider} careProviderInfo={this.state.careProviderInfo} selectCareProvider={this.selectCareProvider} /> : usersArr}
+                </div>
             </div>
         );
     }
