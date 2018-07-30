@@ -1,0 +1,42 @@
+/* .sideNav {
+    position: absolute;
+    top: 100px;
+    left: 10px;
+    width: 25%;
+    display: none;
+}
+
+.menuItem h3 {
+    display: inline-block;
+}
+
+@media (min-width: 1000px) {
+    .sideNav {
+        display: block;
+        width: 200px;
+    }
+    .menuItem h3 {
+        font-size: 20px;
+        font-weight: normal;
+    }
+}
+
+@media (min-width: 1200px) {
+    .sideNav {
+        width: 300px;
+    }
+}
+
+@media (min-width: 1500px) {
+    .sideNav {
+        width: 400px;
+    }
+    .menuItem h3 {
+        font-size: 25px;
+    }
+    .menuItem img {
+        height: 30px;
+        width: 30px;
+        margin-right: 10px;
+    }
+} */

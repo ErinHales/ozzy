@@ -96,11 +96,23 @@ export default class Post extends Component {
         })
     }
 
+    report(bool) {
+        axios.put('/api/report', {id: this.props.data.id, report: bool}).then(response => {
+            if (window.location.hash === "#/manage") {
+                this.props.update(response);
+            }
+        })
+    }
 
+    deletePost = () => {
+        axios.delete(`/api/deletepost/${this.props.data.id}`).then(response => {
+            this.props.update(response);
+        });
+    }
 
     render() {
         let { colors, feeds } = this.state;
-        let { date, status, post, first_name, last_name, picture, image } = this.props.data;
+        let { date, status, post, first_name, last_name, picture, image, link } = this.props.data;
         let commentArr = [];
         if(this.state.comments[0]) {
             this.state.comments.forEach((comment,i) => {
@@ -119,7 +131,7 @@ export default class Post extends Component {
         return (
             <div className="post">
                 <div className="inline">
-                    <img src={picture} alt="profile" />
+                <img src={picture} alt="profile" />
                     <div className="postInfo">
                         <div className="name">
                             <h2>{first_name} {last_name}</h2>
@@ -132,13 +144,14 @@ export default class Post extends Component {
                     </div>
                 </div>
                 <p>{post}</p>
-                {image ? <Image cloudName={process.env.REACT_APP_CLOUD_NAME} publicId={image} id="postedImg" /> : null}
+                {image ? <a href={link} target="_blank"><Image cloudName={process.env.REACT_APP_CLOUD_NAME} publicId={image} id="postedImg" /></a> : null}
                 <div className="iconContainer">
                     <img src={this.state.loved ? "http://i68.tinypic.com/10ht5w0.jpg" : "http://i65.tinypic.com/2e0lnhj.jpg"} alt="love" onClick={() => this.love()} />
                     <img src={this.state.liked ? "http://i65.tinypic.com/29xalxi.jpg" : "http://i67.tinypic.com/2cokgaw.jpg"} alt="" onClick={() => this.like()} />
                     <img src="http://i68.tinypic.com/3130vwh.jpg" alt="" onClick={() => this.getComments(!this.state.showComments)}/>
-                    <img src="http://i68.tinypic.com/15cofhi.jpg" alt="" />
+                    <img title="Report Post" src="http://i66.tinypic.com/j0xqo2.jpg" alt="" onClick={() => this.report(true)} />
                 </div>
+                {this.props.delete === true ? <div><button className="cancelButton padding" onClick={() => this.deletePost()}>Delete</button><button className="ignoreButton padding" onClick={() => this.report(false)}>Ignore</button></div> : null}
                 {/* if this.state.showComments is true, it will display comments and input box for making a new comment */}
         {this.state.showComments ? <input type="text" placeholder="comment" value={this.state.input} onChange={(e) => this.updateCommentInput(e)} onKeyUp={event => (event.key === "Enter" && this.state.input !== "") ? this.comment() : null} /> : null}
         {this.state.showComments ? <button onClick={() => (this.state.input !== "") ? this.comment() : null}>submit</button> : null}

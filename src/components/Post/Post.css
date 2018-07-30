@@ -127,9 +127,25 @@
     margin-left: 0px;
 }
 
+.padding {
+    margin: 10px;
+}
+
 @media (min-width: 600px) {
     .post {
         width: 600px;
         margin: 5px;
+    }
+    .iconContainer img {
+        width: 28px;
+        height: 25px;
+        padding-left: 20px;
+        padding-top: 10px;
+    }
+    .postInfo h2 {
+        font-size: 25px;
+    }
+    .postInfo h3 {
+        font-size: 15px;
     }
 }

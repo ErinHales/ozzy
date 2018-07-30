@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Dropzone from 'react-dropzone';
 import { Link } from 'react-router-dom';
+// import SideNav from '../SideNav/SideNav';
 import './NewPost.css';
 
 export default class NewPost extends Component {
@@ -83,6 +84,7 @@ export default class NewPost extends Component {
     render() {
         return (
             <div className="newPost">
+                {/* <SideNav /> */}
                 <div className="postContainer">
                     <div className="newPostHeader">
                         <Link to="/forum"><button onClick={() => this.post()}>Post</button></Link>

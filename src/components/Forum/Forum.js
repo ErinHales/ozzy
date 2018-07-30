@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Post from '../Post/Post';
 import { Link } from 'react-router-dom';
+// import SideNav from '../SideNav/SideNav';
+// import NewPost from '../NewPost/NewPost';
 import './Forum.css';
 
 export default class Forum extends Component {
@@ -29,7 +31,7 @@ export default class Forum extends Component {
     }
 
     componentDidUpdate(prevProps, prevState) {
-        if(prevState.filter !== this.state.filter) {
+        if (prevState.filter !== this.state.filter) {
             axios.get(`/api/filter/${this.state.filter}`).then(res => {
                 console.log(res.data);
                 this.setState({
@@ -54,8 +56,13 @@ export default class Forum extends Component {
         })
         return (
             <div className="forumPage">
+                {/* <SideNav /> */}
+                {/* <div className="fixedRight">
+                    <NewPost />
+                </div> */}
                 {/* User can filter by topic and also by subscribed newsfeed */}
                 <select className="status pickFilter" onChange={(e) => this.updateFilter(e)}>
+                    <option value="All">All</option>
                     <option value={this.state.subscriptions}>Your Subscriptions</option>
                     <option value="Just Moms">Just Moms</option>
                     <option value="Just Dads">Just Dads</option>

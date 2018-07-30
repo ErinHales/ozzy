@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Button from '../Button/Button';
+// import Wait from '../Wait/Wait';
 import "./Welcome.css";
 
 export default class Welcome extends Component {

@@ -11,6 +11,7 @@ import Convo from './components/Convo/Convo';
 import Messages from './components/Messages/Messages';
 import Calendar from './components/Calendar/Calendar';
 import PrivacyPolicy from './components/PrivacyPolicy/PrivacyPolicy';
+import ManagePosts from './components/ManagePosts/ManagePosts';
 import './App.css';
 
 class App extends Component {
@@ -31,6 +32,7 @@ class App extends Component {
           <Route path="/message/:id" component={Convo} />
           <Route path="/calendar" component={Calendar} />
           <Route path="/privacyPolicy" component={PrivacyPolicy} />
+          <Route path="/manage" component={ManagePosts} />
         </Switch>
         </div>
       </HashRouter>

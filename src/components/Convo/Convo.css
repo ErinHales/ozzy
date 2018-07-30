@@ -33,3 +33,20 @@
     overflow-y: scroll;
     overflow-x: hidden;
 }
+
+@media (min-width: 500px) {
+    .messagesContainer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .flexMessagesContainer {
+        width: 500px;
+    }
+    .reverseMessages {
+        width: 500px;
+    }
+    .flexMessagesContainer textarea {
+        width: 490px;
+    }
+}

@@ -121,6 +121,9 @@ app.post('/api/newlike/:postid', postControllers.likeNewPost);
 app.get('/api/comments/:postid', postControllers.getComments);
 app.post('/api/comment/:postid', postControllers.leaveComment);
 app.post('/api/newpost', postControllers.newPost);
+app.get('/api/reported', postControllers.reported);
+app.delete('/api/deletepost/:id', postControllers.deletePost);
+app.put('/api/report', postControllers.report);
 
 
 // care providers 

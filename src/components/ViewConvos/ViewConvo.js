@@ -14,7 +14,6 @@ export default class ViewConvos extends Component {
     componentDidMount() {
         let { care_provider } = this.props.thread;
         axios.get(`/api/last/${care_provider}`).then(response => {
-            console.log(response);
             this.setState({
                 lastMessage: response.data[0]
             })
@@ -22,7 +21,6 @@ export default class ViewConvos extends Component {
     }
 
     render() {
-        console.log(this.state.lastMessage)
         let { care_provider, image, name } = this.props.thread;
         return (
             <Link to={`/message/${care_provider}`} className="messageLink">
@@ -31,7 +29,7 @@ export default class ViewConvos extends Component {
                     <div className="messageThreadDetails">
                         <h4>{name}</h4>
                         <p>{this.state.lastMessage.message}</p>
-                        <p>{this.state.lastMessage.date}</p>
+                        <h6>{this.state.lastMessage.date}</h6>
                     </div>
                 </div>
             </Link>

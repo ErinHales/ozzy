@@ -71,6 +71,10 @@
     padding: 10px;
 }
 
+.familyProfilePic {
+    width: 50%;
+}
+
 .displayEditFamily {
     background-color: white;
     margin: 10px;

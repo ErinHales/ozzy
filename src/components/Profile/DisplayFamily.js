@@ -61,7 +61,7 @@ export default class DisplayFamily extends Component {
                 {/* styling for all overlayConatiners is in NewPost.css */}
                 <Dropzone onDrop={this.onDrop} multiple={false} className="dropzone">
                     <div className="overlayContainer">
-                        <img src={this.state.familyPic} alt="family" />
+                        <img src={this.state.familyPic} alt="family" className="familyProfilePic" />
                         <div className="middle">
                             <div className="text" style={{fontSize: "12px", padding: "10px"}}>Drag or click to select photo</div>
                         </div>

@@ -24,3 +24,19 @@
     font-weight: lighter;
     text-shadow: 5px 5px 5px rgba(0,0,0,0.25);
 }
+.welcome button {
+    margin-bottom: 20px;
+    margin-top: -15px;
+}
+
+@media (min-width: 600px) {
+    .welcome img {
+        width: 500px;
+    }
+}
+
+@media (min-width: 1000px) {
+    .welcome img {
+        width: 500px;
+    }
+}

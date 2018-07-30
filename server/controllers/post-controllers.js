@@ -80,5 +80,29 @@ module.exports = {
             res.status(500).send(err);
             console.log(err);
         })
+    },
+    reported: (req,res) => {
+        req.app.get("db").posts.select_reported().then(response => {
+            res.status(200).send(response);
+        }).catch(err => {
+            res.status(500).send(err);
+            console.log(err);
+        })
+    },
+    deletePost: (req,res) => {
+        req.app.get("db").posts.delete_post(req.params.id).then(response => {
+            res.status(200).send(response);
+        }).catch(err => {
+            res.status(500).send(err);
+            console.log(err);
+        })
+    },
+    report: (req,res) => {
+        req.app.get("db").posts.report_post([req.body.id, req.body.report]).then(response => {
+            res.status(200).send(response);
+        }).catch(err => {
+            res.status(500).send(err);
+            console.log(err);
+        })
     }
 }

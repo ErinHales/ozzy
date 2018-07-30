@@ -73,36 +73,38 @@
 }
 
 
+
+
 @media (min-width: 600px) {
-    .nav {
+    /* .nav {
         display: flex;
         justify-content: center;
     }
     .navContainer {
         width: 600px;
-    }
+    } */
 }
 
 @media (min-width: 1000px) {
-    .navContainer {
+    /* .navContainer {
         width: 1000px;
-    }
+    } */
 }
 
 @media (min-width: 1200px) {
-    .navContainer {
+    /* .navContainer {
         width: 1200px;
-    }
+    } */
 }
 
 @media (min-width: 1400px) {
-    .navContainer {
+    /* .navContainer {
         width: 1400px;
-    }
+    } */
 }
 
 @media (min-width: 1600px) {
-    .navContainer {
+    /* .navContainer {
         width: 1600px;
-    }
+    } */
 }

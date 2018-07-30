@@ -61,7 +61,7 @@ export default class Convo extends Component {
     }
 
     sendMessage = () => {
-        axios.post('/api/newmessage', {care_provider_id: this.props.match.params.id, date: this.state.date, message: this.state.message}).then(() => {
+        axios.post('/api/newmessage', { care_provider_id: this.props.match.params.id, date: this.state.date, message: this.state.message }).then(() => {
             this.updateThread();
             // this.socket.emit("send");
         })
@@ -85,20 +85,21 @@ export default class Convo extends Component {
     }
 
     render() {
-        console.log(this.state.thread);
         let messageArr = [];
         this.state.thread.forEach(message => {
             messageArr.push(<Message messageData={message} />);
         })
 
         return (
-            <form className="messagesContainer" onSubmit={() => this.handleSendMessage()}>
-                <div className="reverseMessages">
-                    {messageArr}
+            <div className="messagesContainer" onSubmit={() => this.handleSendMessage()}>
+                <div className="flexMessagesContainer">
+                    <div className="reverseMessages">
+                        {messageArr}
+                    </div>
+                    <textarea type="text" placeholder="type here" value={this.state.message} onChange={(e) => this.handleChange(e)} onKeyUp={(event) => event.key === "Enter" ? this.handleChange(event) : null}></textarea>
+                    <img src="http://i64.tinypic.com/jzwkuh.jpg" alt="send" className="sendMessage" onClick={() => this.handleSendMessage()} />
                 </div>
-                <textarea type="text" placeholder="type here" value={this.state.message} onChange={(e) => this.handleChange(e)} onKeyUp={(event) => event.key === "Enter" ? this.handleChange(event) : null}></textarea>
-                <img src="http://i64.tinypic.com/jzwkuh.jpg" alt="send" className="sendMessage" onClick={() => this.handleSendMessage()}/>
-            </ form>
-                )
-            }
+            </div>
+        )
+    }
 }
