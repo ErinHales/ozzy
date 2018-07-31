@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Post from '../Post/Post';
+import './ManagePosts.css';
 import axios from 'axios';
 
 export default class Manage extends Component {
@@ -32,7 +33,7 @@ export default class Manage extends Component {
             postsArr.push(<Post key={i} data={post} delete={true} update={this.update} />)
         })
         return (
-            <div>
+            <div className="managePosts">
                 {postsArr}
             </div>
         )

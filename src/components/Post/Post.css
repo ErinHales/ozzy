@@ -72,6 +72,7 @@
 .iconContainer img {
     height: 15px;
     width: 17px;
+    cursor: pointer;
 }
 
 .comment {
@@ -131,16 +132,23 @@
     margin: 10px;
 }
 
-@media (min-width: 600px) {
+@media (min-width: 400px) {
     .post {
-        width: 600px;
+        width: 400px;
         margin: 5px;
     }
+    .box {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+@media (min-width: 800px) {
     .iconContainer img {
-        width: 28px;
-        height: 25px;
-        padding-left: 20px;
-        padding-top: 10px;
+        width: 20px;
+        height: 18px;
+        padding-left: 10px;
+        padding-top: 5px;
     }
     .postInfo h2 {
         font-size: 25px;

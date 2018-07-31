@@ -88,3 +88,21 @@
 .familyMember input {
     width: 120px;
 }
+
+@media (min-width: 600px) {
+    .profileSettings {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .profileSettings .profilePicture {
+        width: 50vw;
+        margin: 10px;
+    }
+    .profileContainer {
+        width: 50vw;
+    }
+    .family {
+        width: 50vw;
+    }
+}

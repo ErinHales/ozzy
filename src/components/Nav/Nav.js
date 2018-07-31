@@ -42,8 +42,10 @@ export default class Nav extends Component {
                     {/* click anywhere on the nav bar to see the slideDown menu */}
                     <div className="nav" onClick={() => this.toggleMenu()}>
                         <div className="navContainer">
-                            <h1>Ozzy</h1>
-                            <img src={this.state.userPhoto} alt="" />
+                            <img src="http://i64.tinypic.com/2q8smdi.jpg" alt="" className="navIcon" />
+                            <div className="navHeader">
+                                <img src={this.state.userPhoto} alt="" />
+                            </div>
                         </div>
                     </div>
                     <div className={this.state.menu ? "menuOn" : "menuOff"}>

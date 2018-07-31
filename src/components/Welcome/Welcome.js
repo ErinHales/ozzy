@@ -17,9 +17,11 @@ export default class Welcome extends Component {
     render() {
         return (
             <div className="welcome">
-                <img src="http://i67.tinypic.com/33lm8g4.jpg" alt=""/>
-                <h1>Ozzy</h1>
-                <div onClick={() => this.login()}><Button text="Get Started"/></div>
+                <img src="http://i67.tinypic.com/33lm8g4.jpg" alt="" />
+                <div className="welcomeGetStarted">
+                    <h1>Ozzy</h1>
+                    <div onClick={() => this.login()}><Button text="Get Started"/></div>
+                </div>
             </div>
         )
     }

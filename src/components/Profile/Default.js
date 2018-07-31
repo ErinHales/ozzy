@@ -19,11 +19,13 @@ export default function Default(props) {
     })
     return (
         <div className="profileSettings">
-            <img src={props.profileURL} alt="profile" className="profilePicture" />
-            <div className="settingsContainer">    
-                <h3>Status:  {props.status}</h3>
-                <h3>Subscribed News Channels: {props.subscribedNewsFeeds}</h3>
-                <h3>Seeking Child Care: {props.seekingChildCare ? "Yes" : "No"}</h3>
+            <div>
+                <img src={props.profileURL} alt="profile" className="profilePicture" />
+                <div className="settingsContainer">
+                    <h3>Status:  {props.status}</h3>
+                    <h3>Subscribed News Channels: {props.subscribedNewsFeeds}</h3>
+                    <h3>Seeking Child Care: {props.seekingChildCare ? "Yes" : "No"}</h3>
+                </div>
             </div>
             <div className="family">
                 <h3>Family:</h3>
