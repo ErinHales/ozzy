@@ -23,15 +23,20 @@ export default class Profile extends Component {
         axios.get('/api/getuserinfo').then(response => {
             // response.data also returns id, first_name, last_name
             let { picture, seeking_childcare, status, newsfeed } = response.data[0];
-            let familyMembers = [];
-            response.data.forEach((person, i) => {
-                familyMembers.push({ name: person.name, image: person.image, relationship: person.relationship, id: person.family_id });
-            })
             this.setState({
                 profileURL: picture,
                 status: status,
                 subscribedNewsFeeds: newsfeed,
                 seekingChildCare: seeking_childcare,
+                // family: familyMembers
+            })
+        })
+        axios.get('/api/familyinfo').then(response => {
+            let familyMembers = [];
+            response.data.forEach((person, i) => {
+                familyMembers.push({ name: person.name, image: person.image, relationship: person.relationship, id: person.family_id });
+            })
+            this.setState({
                 family: familyMembers
             })
         })

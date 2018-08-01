@@ -77,7 +77,7 @@
     padding: 10px;
     border-radius: 25px;
     position: absolute;
-    top: calc(52% + 80px);
+    top: calc(52% + 100px);
     left: 5%;
     width: 53px;
     height: 53px;
@@ -102,6 +102,6 @@
 
 @media (min-width: 600px) {
     .messageButton {
-        top: 52vh;
+        left: calc(50% - 270px);
     }
 }

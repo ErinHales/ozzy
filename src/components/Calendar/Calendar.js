@@ -2,25 +2,23 @@ import React, { Component } from 'react';
 import BigCalendar from 'react-big-calendar';
 import moment from 'moment';
 import './Calendar.css';
-
 import GoogleCalendar from '../../utils/GoogleCalendar';
-
 import 'react-big-calendar/lib/css/react-big-calendar.css';
-// import styles from './Home.scss'
+import SyncCalendar from './SyncCalendar';
 
 // use Moment.js to localize react-big-calendar
 BigCalendar.momentLocalizer(moment)
 
-const calendars = [
-    {
-        name: 'Erin McBride',
-        url: 'mcbridee093@gmail.com'
-    },
-    {
-        name: "Ozzy",
-        url: 'ii34a0djbmvg4n2emfie8m3jfs@group.calendar.google.com'
-    }
-]
+// const calendars = [
+//     {
+//         name: 'Erin McBride',
+//         url: 'mcbridee093@gmail.com'
+//     },
+//     {
+//         name: "Ozzy",
+//         url: 'ii34a0djbmvg4n2emfie8m3jfs@group.calendar.google.com'
+//     }
+// ]
 const dailyRecurrence = 700
 const weeklyRecurrence = 100
 const monthlyRecurrence = 20
@@ -29,15 +27,37 @@ export default class Calendar extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            events: []
+            events: [],
+            left: -250,
+            calendars: [
+                {
+                    name: 'Erin McBride',
+                    url: 'mcbridee093@gmail.com'
+                }
+            ]
         }
     }
 
     componentDidMount = () => {
-        this.getGoogleCalendarEvents()
+        this.getGoogleCalendarEvents([{name: 'Erin McBride', url: 'mcbridee093@gmail.com'}])
+        this.setState({
+            left: 0
+        })
     }
 
-    getGoogleCalendarEvents = () => {
+    sync = () => {
+        // let calendarArr = this.state.calendars.slice();
+        // calendarArr.push({
+        //     name: "Ozzy",
+        //     url: 'ii34a0djbmvg4n2emfie8m3jfs@group.calendar.google.com'
+        // })
+        this.getGoogleCalendarEvents([{name: 'Erin McBride',url: 'mcbridee093@gmail.com'},{name: "Ozzy", url: 'ii34a0djbmvg4n2emfie8m3jfs@group.calendar.google.com'}]);
+        this.setState({
+            left: -250
+        })
+    }
+
+    getGoogleCalendarEvents = (calendars) => {
         /* @param {string} GOOGLE_API_KEY
           *@param {array} calendars - a list of key, value pairs
                         {name: 'name of your calendar', url: 'calendar_url'}
@@ -67,6 +87,7 @@ export default class Calendar extends Component {
         return (
             <div className="calendar-container">
                 <BigCalendar events={this.state.events} />
+                <SyncCalendar sync={this.sync} left={this.state.left} />
             </div>
         )
     }

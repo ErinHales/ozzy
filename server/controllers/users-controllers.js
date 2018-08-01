@@ -7,6 +7,14 @@ module.exports = {
             console.log(err);
         })
     },
+    getFamilyInfo: (req,res) => {
+        req.app.get("db").users.get_family_info([req.session.user.id]).then(response => {
+            res.status(200).send(response);
+        }).catch(err => {
+            res.status(500).send(err);
+            console.log(err);
+        })
+    },
     updateUserInfo: (req,res) => {
         req.app.get("db").users.update_picture([req.session.user.id, req.body.picture]).then(() => {
             res.status(200);

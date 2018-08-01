@@ -140,6 +140,7 @@ app.get('/api/last/:id', messageControllers.getLastMessage);
 
 // users
 app.get('/api/getuserinfo', userControllers.getUserInfo);
+app.get('/api/familyInfo', userControllers.getFamilyInfo);
 app.put('/api/parentinfo', userControllers.updateParentInfo);
 app.put('/api/userinfo', userControllers.updateUserInfo);
 app.put('/api/familypic', userControllers.updateFamilyMemberPic);
