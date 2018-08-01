@@ -31,9 +31,17 @@ module.exports = {
             console.log(err);
         })
     },
-    updateFamilyMemberPic: (req,res) => {
-        req.app.get("db").users.update_family_picture([req.body.id, req.body.url]).then(res => {
+    updateFamilyMember: (req,res) => {
+        req.app.get("db").users.update_family([req.body.id, req.body.url, req.body.name, req.body.relationship]).then(res => {
             res.sendStatus(200);
+        }).catch(err => {
+            res.status(500).send(err);
+            console.log(err);
+        })
+    },
+    addFamilyMember: (req,res) => {
+        req.app.get("db").users.insert_into_family([req.session.user.id, req.body.name, req.body.image, req.body.relationship]).then(response => {
+            res.status(200);
         }).catch(err => {
             res.status(500).send(err);
             console.log(err);

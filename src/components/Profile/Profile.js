@@ -34,11 +34,23 @@ export default class Profile extends Component {
         axios.get('/api/familyinfo').then(response => {
             let familyMembers = [];
             response.data.forEach((person, i) => {
-                familyMembers.push({ name: person.name, image: person.image, relationship: person.relationship, id: person.family_id });
+                familyMembers.push({ name: person.name, image: person.image, relationship: person.relationship, id: person.id });
             })
             this.setState({
                 family: familyMembers
             })
+        })
+    }
+
+    addFamilyMember = () => {
+        let copy = this.state.family.slice();
+        copy.push({
+            name: null,
+            image: null,
+            relationship: null
+        });
+        this.setState({
+            family: copy
         })
     }
 
@@ -58,6 +70,14 @@ export default class Profile extends Component {
         })
     } 
 
+    updatePicture = (index, pic) => {
+        let copy = this.state.family.slice();
+        copy[index].image = pic;
+        this.setState({
+            family: copy
+        })
+    }
+
     saveChanges() {
         let { status, seekingChildCare, profileURL, subscribedNewsFeeds } = this.state;
         axios.put('/api/parentinfo', { status: status, childCare: seekingChildCare, subscriptions: subscribedNewsFeeds }).then(() => {
@@ -68,6 +88,13 @@ export default class Profile extends Component {
                 console.log('User info updated')
             })
         }
+        this.state.family.forEach(person => {
+            if(person.id) {
+                axios.put('/api/updatefamily', {id: person.id, url: person.image, name: person.name, relationship: person.relationship}).then(console.log("family info updated"));
+            } else {
+                axios.post('/api/addfamily', {name: person.name, image: person.image, relationship: person.relationship}).then(console.log("family member added"));
+            }
+        })
     }
 
     onDrop = files => {
@@ -162,10 +189,11 @@ export default class Profile extends Component {
     }
 
     render() {
+        console.log(this.state.family);
         const { edit, profileURL, status, subscribedNewsFeeds, seekingChildCare, family } = this.state;
         return (
             <div>
-                {edit ? <Edit updateName={this.updateName} updateRelationship={this.updateRelationship} setStatus={this.setStatus} profileURL={profileURL} status={status} newsfeed={subscribedNewsFeeds} deleteSubscription={this.deleteSubscription} addSubscription={this.addSubscription} seekingChildCare={seekingChildCare} onDrop={this.onDrop} toggleChildCare={this.toggleChildCare} family={family} /> : <Default profileURL={profileURL} status={status} subscribedNewsFeeds={subscribedNewsFeeds} seekingChildCare={seekingChildCare} family={family} />}
+                {edit ? <Edit updatePicture={this.updatePicture} addFamilyMember={this.addFamilyMember} updateName={this.updateName} updateRelationship={this.updateRelationship} setStatus={this.setStatus} profileURL={profileURL} status={status} newsfeed={subscribedNewsFeeds} deleteSubscription={this.deleteSubscription} addSubscription={this.addSubscription} seekingChildCare={seekingChildCare} onDrop={this.onDrop} toggleChildCare={this.toggleChildCare} family={family} /> : <Default profileURL={profileURL} status={status} subscribedNewsFeeds={subscribedNewsFeeds} seekingChildCare={seekingChildCare} family={family} />}
                 <div className="buttonContainer">
                     {edit ? <button className="editProfileButton" onClick={() => {
                         this.saveChanges();

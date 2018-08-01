@@ -34,6 +34,9 @@ export default class DisplayFamily extends Component {
         // Push all the axios request promise into a single array
         let { REACT_APP_UPLOAD_PRESET, CLOUDINARY_API_KEY, REACT_APP_CLOUD_NAME } = process.env;
         const uploaders = files.map(file => {
+            this.setState({
+                familyPic: file.preview
+            })
             // Initial FormData
             const formData = new FormData();
             formData.append("file", file);
@@ -47,10 +50,11 @@ export default class DisplayFamily extends Component {
             }).then(response => {
                 const fileURL = response.data.secure_url // You should store this URL for future references in your app
                 console.log(file);
-                this.setState({
-                    // publicId: data.public_id,
-                    familyPic: fileURL
-                })
+                // this.setState({
+                //     // publicId: data.public_id,
+                //     familyPic: fileURL
+                // })
+                this.props.updatePicture(this.props.index, fileURL);
             })
         });
     }
@@ -61,15 +65,15 @@ export default class DisplayFamily extends Component {
                 {/* styling for all overlayConatiners is in NewPost.css */}
                 <Dropzone onDrop={this.onDrop} multiple={false} className="dropzone">
                     <div className="overlayContainer">
-                        <img src={this.state.familyPic} alt="family" className="familyProfilePic" />
+                        <img src={this.state.familyPic ? this.state.familyPic : "http://i63.tinypic.com/2vnorqs.jpg"} alt="family" className="familyProfilePic" />
                         <div className="middle">
                             <div className="text" style={{fontSize: "12px", padding: "10px"}}>Drag or click to select photo</div>
                         </div>
                     </div>
                 </Dropzone>
                 <div>
-                    <input placeholder={this.props.person.name} type="text" onChange={(e) => this.props.updateName(e)} />
-                    <input placeholder={this.props.person.relationship} type="text" onChange={(e) => this.props.updateRelationship(e)} />
+                    <input placeholder={this.props.person.name ? this.props.person.name : "name"} type="text" onChange={(e) => this.props.updateName(this.props.index, e)} />
+                    <input placeholder={this.props.person.relationship ? this.props.person.relationship : "relationship"} type="text" onChange={(e) => this.props.updateRelationship(this.props.index, e)} />
                 </div>
             </div>
         )

@@ -29,9 +29,11 @@ export default function Default(props) {
             </div>
             <div className="family">
                 <h3>Family:</h3>
-                <div className="displayFamily">
-                    {displayFamily}
-                </div>
+                {displayFamily[0] ? (
+                    <div className="displayFamily">
+                        {displayFamily}
+                    </div>
+                ) : <h2 className="noFamilyMembers">You have not added any family members. <br />Click the Edit button below to add your family</h2>}
             </div>
         </div>
     )

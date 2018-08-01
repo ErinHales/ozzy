@@ -143,7 +143,8 @@ app.get('/api/getuserinfo', userControllers.getUserInfo);
 app.get('/api/familyInfo', userControllers.getFamilyInfo);
 app.put('/api/parentinfo', userControllers.updateParentInfo);
 app.put('/api/userinfo', userControllers.updateUserInfo);
-app.put('/api/familypic', userControllers.updateFamilyMemberPic);
+app.put('/api/updatefamily', userControllers.updateFamilyMember);
+app.post('/api/addfamily', userControllers.addFamilyMember);
 app.post('/api/newparent', userControllers.createParentInfo);
 
 

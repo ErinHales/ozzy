@@ -13,8 +13,9 @@ export default class Edit extends Component {
         let displayFamily = [];
         this.props.family.forEach((person, i) => {
             return displayFamily.push(
-                <DisplayFamily person={person} updateName={this.props.updateName} updateRelationship={this.props.updateRelationship} key={i} />)
+                <DisplayFamily person={person} updatePicture={this.props.updatePicture} updateName={this.props.updateName} updateRelationship={this.props.updateRelationship} key={i} index={i} />)
         })
+
         return (
             <div className="profileSettings">
                 {/* styling for all overlayContainers is in NewPost.css */}
@@ -58,6 +59,7 @@ export default class Edit extends Component {
                 <div className="displayEditFamily">
                     <h3>Family:</h3>
                     {displayFamily}
+                    <button className="addFamily" onClick={() => this.props.addFamilyMember()}><img src="http://i66.tinypic.com/m7ti85.jpg" alt=""/></button>
                 </div>
             </div>
         )
