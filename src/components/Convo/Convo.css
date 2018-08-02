@@ -5,6 +5,9 @@
     position: fixed;
     bottom: 0;
 }
+.messagesContainer > div {
+    background-color: white;
+}
 /* 
 .messagesContainer > div {
     position: absolute;
@@ -40,6 +43,10 @@
         flex-direction: column;
         align-items: center;
     }
+    .sendMessage {
+        right: calc(50% - 240px);
+        bottom: 30px;
+    }
     .flexMessagesContainer {
         width: 500px;
     }
@@ -48,5 +55,7 @@
     }
     .flexMessagesContainer textarea {
         width: 490px;
+        margin: 0px;
+        margin-bottom: 20px;
     }
 }
